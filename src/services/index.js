@@ -1,0 +1,40 @@
+import Vue from 'vue'
+
+// axios.get('http://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg',{
+//     firstMame:1
+// }).then((res)=>{
+//     console.log(res)
+// })
+function deal (res) {
+  if (res.data.code !== 0) {
+    return Promise.reject(res)
+  }
+  return Promise.resolve(res)
+}
+function get (url, params) {
+  return Vue.http.get(url, { params: params }).then((res) => { return deal(res) })
+}
+function jsonp(url,params){
+    return Vue.http.jsonp(url,{ 
+       params: {
+              g_tk: 5381,
+              loginUin: 0,
+              hostUin: 0,
+              format: 'jsonp',
+              inCharset: 'utf8',
+              outCharset: 'utf-8',
+              notice: 0,
+              platform: 'yqq',
+              needNewCode: 0
+            },
+            jsonp: 'jsonpCallback'
+    }).then((res) => { 
+        // let res2 = JSON.stringify(res)
+        console.log(res.data.data)
+        // return deal(res) 
+    })
+}
+export default {
+  get,
+  jsonp
+}
