@@ -8,13 +8,13 @@ import API from 'api'
 export default {
   name: 'app',
   beforeMount () {
-    this.setFontSize()
+    this.setFontSize(640)//按照设计稿大小传入640
   },
   mounted () {
     // console.log(a)
   },
   methods : {
-    setFontSize(){
+    setFontSize(designSize){
       let docEl = document.documentElement,
             resizeEvt = 'orientationchange' in window?'orientationchage':'resize',
             recalc = function(){
@@ -22,9 +22,13 @@ export default {
               if (!clientWidth) {
                 return
               }
-              docEl.style.fontSize = Math.ceil(20 * (clientWidth / 640)) + 'px';
+              const sizeScale = Math.ceil(20 * (clientWidth / designSize)) 
+              console.log(sizeScale)
+              docEl.style.fontSize = sizeScale%2 === 0 ?sizeScale : (sizeScale+1) + 'px';//尽量偶数是为了避免在浏览器产生渲染质量问题
             };
-      recalc()  
+      if (!docEl.style.fontSize) {
+        recalc()
+      }
       window.addEventListener(resizeEvt,recalc,false);
     }
   }
@@ -33,6 +37,6 @@ export default {
 <style src="assets/css/reset.css"></style>
 <style>
 .app{
-  min-height:100vh;
+  /*min-height:100vh;*/
 }
 </style>

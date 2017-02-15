@@ -40,7 +40,7 @@ export default {
    justify-content:center;
    display: flex;
    align-items:center;
-   width:100vw;
+   width:100%;
 }
 .slider-btn{
     width:0.8rem;
@@ -50,16 +50,15 @@ export default {
     margin-right:0.5rem;
 }
 .slider-wrap{
-    /*width:100vw;*/
     overflow:hidden;
-    font-size:0;
 }
 .slider-img{
     display: flex;
     display: -ms-flexbox;
     flex-direction:row;
     transition:all .2s;
-    transform: translate3d(-100vw,0,0);
+    font-size:0;
+    transform: translate3d(-100%,0,0);
 }
 .slider-item img{
    width:100vw;

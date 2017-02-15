@@ -1,6 +1,6 @@
 <template>
     <div class="billboard-wrap">
-        <span class="board-title">官方榜</span>
+        <div class="board-title">官方榜</div>
         <ul class="billboard">
             <li class="billboard-item" v-for="item in listContent">
                 <div class="ban-l"><img :src="item.url"></div>
@@ -33,25 +33,38 @@ export default {
 </script>
 <style scoped>
 .billboard-wrap{
-    background-color:#fdfdfd;
     padding-top:1rem;
 }
 .board-title{
     margin-left:2rem;
+    position: relative;
+}
+.board-title:before {
+    width: 0.5rem;
+    background-color: #c62f2f;
+    height: 1.5rem;
+    display: block;
+    position: absolute;
+    left: -1rem;
+    content: '';
+}
+.billboard {
+    /*display: flex;*/
+    /*flex-direction: column;*/
 }
 .billboard-item{
     display: flex;
 }
 .ban-l{
     flex:1;
-    padding:1rem;
+    padding: 1rem 0.5rem 0 1rem;
 }
 .ban-l img {
     width:100%;
 }
 .ban-r{
     flex:2;
-    padding:1rem;
+    padding:1rem 0.5rem;
 }
 .ban-r li {
     color:#777;
