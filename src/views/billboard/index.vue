@@ -1,0 +1,59 @@
+<template>
+    <div class="billboard-wrap">
+        <span class="board-title">官方榜</span>
+        <ul class="billboard">
+            <li class="billboard-item" v-for="item in listContent">
+                <div class="ban-l"><img :src="item.url"></div>
+                <ol class="ban-r">
+                    <li>1.送情郎-岳云鹏/好妹妹乐队</li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+</template>
+<script>
+import listImg from 'assets/img/2.jpg'
+export default {
+    data () {
+        return {
+             listContent : [
+                {
+                    url : listImg
+                },
+                {
+                    url : listImg
+                },
+                {
+                    url : listImg
+                }
+            ]
+        }
+    }
+}
+</script>
+<style scoped>
+.billboard-wrap{
+    background-color:#fdfdfd;
+    padding-top:1rem;
+}
+.board-title{
+    margin-left:2rem;
+}
+.billboard-item{
+    display: flex;
+}
+.ban-l{
+    flex:1;
+    padding:1rem;
+}
+.ban-l img {
+    width:100%;
+}
+.ban-r{
+    flex:2;
+    padding:1rem;
+}
+.ban-r li {
+    color:#777;
+}
+</style>

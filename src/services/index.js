@@ -1,10 +1,4 @@
 import Vue from 'vue'
-
-// axios.get('http://c.y.qq.com/v8/fcg-bin/fcg_v8_album_info_cp.fcg',{
-//     firstMame:1
-// }).then((res)=>{
-//     console.log(res)
-// })
 function deal (res) {
   if (res.data.code !== 0) {
     return Promise.reject(res)
@@ -28,11 +22,11 @@ function jsonp(url,params){
               needNewCode: 0
             },
             jsonp: 'jsonpCallback'
-    }).then((res) => { 
-        // let res2 = JSON.stringify(res)
-        console.log(res.data.data)
-        // return deal(res) 
-    })
+        }).then((res) => { 
+            // let res2 = JSON.stringify(res)
+            console.log(res.data.data)
+            // return deal(res) 
+        })
 }
 export default {
   get,

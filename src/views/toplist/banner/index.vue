@@ -1,29 +1,64 @@
 <template>
     <div class="banner">
-        <ul class="slider-img">
-            <li class="slider-item">
-                <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M0000023FL6U1M1SIE.jpg">
-            </li>
-            <li class="slider-item">
-                <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M0000023FL6U1M1SIE.jpg">
-            </li>
-            <li class="slider-item">
-                <img src="http://y.gtimg.cn/music/photo_new/T003R720x288M0000023FL6U1M1SIE.jpg">
-            </li>
-        </ul>
+        <div class="slider-wrap">
+            <ul class="slider-img">
+                <li class="slider-item" v-for="item in sliderImg"><img :src="item.url"></li>
+            </ul>
+        </div>
         <ul class="banner-page">
-            <li class="slider-btn"></li>
+            <li class="slider-btn" v-for="item in sliderImg"></li>
         </ul>
     </div>
 </template>
+<script>
+import img from 'assets/img/1.jpg'
+export default {
+    data () {
+        return {
+            sliderImg : [
+                {
+                    url : img
+                }, 
+                {
+                    url : img
+                }, 
+                {
+                    url : img
+                }
+            ]
+        }
+    }
+}
+</script>
 <style scoped>
 .banner{
-    /*border:1px solid #fff;*/
+   position:relative;
+}
+.banner-page{
+   position:absolute;
+   bottom:1rem;
+   justify-content:center;
+   display: flex;
+   align-items:center;
+   width:100vw;
+}
+.slider-btn{
+    width:0.8rem;
+    height:0.8rem;
+    background-color:#aaa;
+    border-radius: 50%;
+    margin-right:0.5rem;
+}
+.slider-wrap{
+    /*width:100vw;*/
+    overflow:hidden;
+    font-size:0;
 }
 .slider-img{
     display: flex;
     display: -ms-flexbox;
     flex-direction:row;
+    transition:all .2s;
     transform: translate3d(-100vw,0,0);
 }
 .slider-item img{

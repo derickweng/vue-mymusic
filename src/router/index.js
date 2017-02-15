@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from 'components/Hello'
 import toplist from 'views/toplist'
+import billboard from 'views/billboard'
 Vue.use(Router)
 
 export default new Router({
@@ -9,7 +9,14 @@ export default new Router({
     {
       path: '/',
       name: 'toplist',
-      component: toplist
+      component: toplist,
+      children : [
+        {
+          path : '',
+          name : 'billboard',
+          component : billboard,
+        }
+      ]
     }
   ]
 })
