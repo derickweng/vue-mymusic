@@ -8,7 +8,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'toplist',
+      // name: 'toplist',
       component: toplist,
       children : [
         {

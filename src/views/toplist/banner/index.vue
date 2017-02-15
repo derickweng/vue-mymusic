@@ -2,11 +2,11 @@
     <div class="banner">
         <div class="slider-wrap">
             <ul class="slider-img">
-                <li class="slider-item" v-for="item in sliderImg"><img :src="item.url"></li>
+                <li class="slider-item" v-for="item in paseImg(sliderImg)"><img :src="item.url"></li>
             </ul>
         </div>
         <ul class="banner-page">
-            <li class="slider-btn" v-for="item in sliderImg"></li>
+            <li class="slider-btn" v-for="(item,index) in sliderImg" :class="{'active':nowSlider === index}"></li>
         </ul>
     </div>
 </template>
@@ -25,7 +25,18 @@ export default {
                 {
                     url : img
                 }
-            ]
+            ],
+            nowSlider : 0
+        }
+    },
+    methods : {
+        paseImg(arr){
+            // let paseArr = Object.assign([],arr).push(arr[arr.length-1])
+            // console.log(paseArr)
+            // return paseArr
+        },
+        sliderStart (){
+
         }
     }
 }
@@ -48,6 +59,9 @@ export default {
     background-color:#aaa;
     border-radius: 50%;
     margin-right:0.5rem;
+}
+.slider-btn.active{
+    background:#c62f2f;
 }
 .slider-wrap{
     overflow:hidden;

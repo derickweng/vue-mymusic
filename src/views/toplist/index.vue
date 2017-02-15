@@ -4,10 +4,10 @@
             <banner></banner>
             <div class="list-wrap">
                 <ul class="list-type"   @click="listActive($event)">
-                    <li class="list-type-item">排行榜</li>
-                    <li class="list-type-item">歌单</li>
-                    <li class="list-type-item">个性推荐</li>
-                    <li class="list-type-item">主播电台</li>
+                    <li class="list-type-item" index="0" v-active="nowType">排行榜</li>
+                    <li class="list-type-item"  index="1">歌单</li>
+                    <li class="list-type-item"  index="2">个性推荐</li>
+                    <li class="list-type-item"  index="3">主播电台</li>
                 </ul>
                 <div class="list-bar" :style="nowType"></div>
             </div>
@@ -32,11 +32,27 @@ export default{
             },
         }
     },
+    directives : {
+        active : {
+            // bind(el,binding){
+            //     const tartWidth = window.getComputedStyle(el).width
+            //     binding = Object.assign({
+            //         width : tartWidth,
+            //         left : el.getAttribute('index')* parseInt(tartWidth)+ 'px'
+            //     })       
+            //     console.log(binding)         
+            // }
+        }
+    },
     methods : {
         listActive(e){
-            if (~e.target.className.search('list-type-item')) {
-                console.log(e.currentTarget)
-                this.nowType = e.target.style.width
+            const eTart = e.target;
+            if (~eTart.className.search('list-type-item')) {
+                const tartWidth = window.getComputedStyle(eTart).width
+                this.nowType = {
+                    width : tartWidth,
+                    left : e.target.getAttribute('index')* parseInt(tartWidth)+ 'px'
+                }
             }
         }
     }
@@ -45,11 +61,10 @@ export default{
 <style scoped>
 .top-wrap{
   overflow: auto;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 4rem);/*4rem为footer的高*/
 }
 .toplist{
   background-color:#fdfdfd;
-  /*height: calc(100vh - 4rem); //4rem为footer的高*/
 }
 .list-type{
     display: flex;
@@ -63,8 +78,10 @@ export default{
 }
 .list-bar {
     position: absolute;
-    left:0;
     height:2px;
+    left:0;
+    width:6.5rem;
+    transition: all .3s;
     background-color: #c62f2f;
 }
 .list-type-item{
@@ -74,8 +91,6 @@ export default{
     line-height: 2rem;
     cursor: pointer;
     height:2rem;
-}
-.list-type-item.active{
-    /*border-bottom:2px solid #c62f2f;*/
+    font-size:0.8rem;
 }
 </style>

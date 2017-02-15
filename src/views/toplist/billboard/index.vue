@@ -28,7 +28,12 @@ export default {
                 }
             ]
         }
-    }
+    },
+    // watch : {
+    //     $route (to,from) {
+    //         console.log(from)
+    //     }
+    // },
 }
 </script>
 <style scoped>
@@ -47,10 +52,6 @@ export default {
     position: absolute;
     left: -1rem;
     content: '';
-}
-.billboard {
-    /*display: flex;*/
-    /*flex-direction: column;*/
 }
 .billboard-item{
     display: flex;

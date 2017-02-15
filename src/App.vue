@@ -23,7 +23,7 @@ export default {
                 return
               }
               const sizeScale = Math.ceil(20 * (clientWidth / designSize)) 
-              console.log(sizeScale)
+              // console.log(sizeScale)
               docEl.style.fontSize = sizeScale%2 === 0 ?sizeScale : (sizeScale+1) + 'px';//尽量偶数是为了避免在浏览器产生渲染质量问题
             };
       if (!docEl.style.fontSize) {
