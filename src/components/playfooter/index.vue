@@ -108,9 +108,6 @@ export default {
     .nav-btn-items .listline:first-child{
         margin-top: 0;
     }
-    .nav-btn-items .audio-next{
-        /*border-right:1px solid #c62f2f;*/
-    }
     .next-line:before,.next-line:after{
         content:'';
         display: block;

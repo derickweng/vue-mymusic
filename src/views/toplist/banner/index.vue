@@ -1,7 +1,7 @@
 <template>
     <div class="banner">
         <div class="slider-wrap">
-            <ul class="slider-img">
+            <ul class="slider-img" :style="sliderActive">
                 <li class="slider-item" v-for="item in paseImg(sliderImg)"><img :src="item.url"></li>
             </ul>
         </div>
@@ -26,17 +26,30 @@ export default {
                     url : img
                 }
             ],
+            sliderActive : {
+                transform: 'translate3d(0,0,0)'
+            },
             nowSlider : 0
         }
     },
+    mounted () {
+        this.sliderStart()
+    },
     methods : {
-        paseImg(arr){
-            // let paseArr = Object.assign([],arr).push(arr[arr.length-1])
-            // console.log(paseArr)
-            // return paseArr
+        paseImg (arr) {
+            // return arr
+            let paseArr = Object.assign([],arr).push(arr[arr.length-1])
+            console.log(arr,paseArr)
+            return arr
         },
-        sliderStart (){
-
+        sliderStart () {
+            setInterval(()=>{
+                this.nowSlider ++ 
+                this.nowSlider %= (this.sliderImg.length) 
+                this.sliderActive = Object.assign({},{
+                    transform: `translate3d(${-100*(this.nowSlider)}%,0,0)`
+                })                
+            },3000)
         }
     }
 }
@@ -70,9 +83,8 @@ export default {
     display: flex;
     display: -ms-flexbox;
     flex-direction:row;
-    transition:all .2s;
+    transition:all 2s;
     font-size:0;
-    transform: translate3d(-100%,0,0);
 }
 .slider-item img{
    width:100vw;

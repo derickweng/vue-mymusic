@@ -4,7 +4,7 @@
             <banner></banner>
             <div class="list-wrap">
                 <ul class="list-type"   @click="listActive($event)">
-                    <li class="list-type-item" index="0" v-active="nowType">排行榜</li>
+                    <li class="list-type-item" index="0">排行榜</li>
                     <li class="list-type-item"  index="1">歌单</li>
                     <li class="list-type-item"  index="2">个性推荐</li>
                     <li class="list-type-item"  index="3">主播电台</li>
@@ -32,8 +32,8 @@ export default{
             },
         }
     },
-    directives : {
-        active : {
+    // directives : {
+        // active : {
             // bind(el,binding){
             //     const tartWidth = window.getComputedStyle(el).width
             //     binding = Object.assign({
@@ -42,8 +42,8 @@ export default{
             //     })       
             //     console.log(binding)         
             // }
-        }
-    },
+        // }
+    // },
     methods : {
         listActive(e){
             const eTart = e.target;
@@ -59,10 +59,6 @@ export default{
 }
 </script>
 <style scoped>
-.top-wrap{
-  overflow: auto;
-  height: calc(100vh - 4rem);/*4rem为footer的高*/
-}
 .toplist{
   background-color:#fdfdfd;
 }

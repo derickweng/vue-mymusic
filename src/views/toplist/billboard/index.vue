@@ -8,6 +8,7 @@
                     <li>1.送情郎-岳云鹏/好妹妹乐队</li>
                 </ol>
             </li>
+            <li class="billboard-item"></li>
         </ul>
     </div>
 </template>
@@ -55,6 +56,7 @@ export default {
 }
 .billboard-item{
     display: flex;
+    min-height: 4rem;
 }
 .ban-l{
     flex:1;
