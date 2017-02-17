@@ -34,8 +34,3 @@ export default {
 }
 </script>
 <style src="assets/css/reset.css"></style>
-<style>
-.app{
-  /*min-height:100vh;*/
-}
-</style>

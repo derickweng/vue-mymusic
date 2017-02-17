@@ -1,6 +1,7 @@
 <template>
     <div class="top-wrap">
        <div class="toplist">
+            <div class="icon-search"></div>
             <banner></banner>
             <div class="list-wrap">
                 <ul class="list-type"   @click="listActive($event)">

@@ -38,8 +38,8 @@ export default {
     methods : {
         paseImg (arr) {
             // return arr
-            let paseArr = Object.assign([],arr).push(arr[arr.length-1])
-            console.log(arr,paseArr)
+            // let paseArr = Object.assign([],arr).push(arr[arr.length-1])
+            // console.log(arr,paseArr)
             return arr
         },
         sliderStart () {
