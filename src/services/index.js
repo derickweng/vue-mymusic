@@ -1,6 +1,9 @@
 import Vue from 'vue'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+
 function deal (res) {
-  if (res.data.code !== 0) {
+  if (res.data.code != 0) {
     return Promise.reject(res)
   }
   return Promise.resolve(res)
@@ -24,8 +27,8 @@ function jsonp(url,params){
             jsonp: 'jsonpCallback'
         }).then((res) => { 
             // let res2 = JSON.stringify(res)
-            console.log(res.data.data)
-            // return deal(res) 
+            // console.log(res.data.data)
+            return deal(res) 
         })
 }
 export default {

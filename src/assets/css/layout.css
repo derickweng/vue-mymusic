@@ -1,0 +1,22 @@
+/*vue动画公共样式都取出来放这里了*/
+.downslide-enter-active,.downslide-leave-active{
+	transition:transform 0.5s;
+}
+.downslide-enter,.downslide-leave-active{
+	transform:translateY(100%);
+}
+
+.fade-enter-active,.fade-leave-active{
+	transition:opacity 0.8s;
+}
+.fade-enter,.fade-leave-active{
+	opacity: 0;
+}
+
+.rightslide-enter-active,.rightslide-leave-active{
+	transition:transform .5s;
+}
+.rightslide-enter,.right-leave-active{
+	transform: translateX(100%);
+}
+

@@ -1,9 +1,12 @@
 <template>
     <div class="top-wrap">
        <div class="toplist">
-            <div class="icon-search">
-            </div>
-            <banner></banner>
+            <header class="topheader">
+                <a href="javascript:;" class="search-ico-wrap">   
+                    <sapn class="icon-search" @click="stateSearch"></span>
+                </a>
+            </header>
+            <banner :bannerlist="bannerlist"></banner>
             <div class="list-wrap">
                 <ul class="list-type"   @click="listActive($event)">
                     <li class="list-type-item" index="0">排行榜</li>
@@ -21,7 +24,11 @@
 <script>
 import banner from './banner'
 import playfooter from 'components/playfooter'
+import API from 'api'
+import img from 'assets/img/1.jpg'
+import {mapState} from 'vuex'
 export default{
+    name : 'toplist',
     components : {
         banner,
         playfooter
@@ -32,7 +39,30 @@ export default{
                 width:'',
                 left : ''
             },
+            bannerlist : [
+                {
+                    url : img
+                }, 
+                {
+                    url : img
+                }, 
+                {
+                    url : img
+                }
+            ]
         }
+    },
+    computed : {
+        ...mapState({
+            showSearch : state => state.showSearch
+        })
+    },
+    mounted(){
+        // API.getLyc().then(res=>{
+        //     console.log(res.data.data)
+        // }).catch(res=>{
+        //     console.log(res)
+        // })
     },
     // directives : {
         // active : {
@@ -47,7 +77,10 @@ export default{
         // }
     // },
     methods : {
-        listActive(e){
+        stateSearch () {
+            this.$store.commit('incresearch')
+        },
+        listActive (e) {
             const eTart = e.target;
             if (~eTart.className.search('list-type-item')) {
                 const tartWidth = window.getComputedStyle(eTart).width
@@ -60,21 +93,23 @@ export default{
     }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+.topheader{
+    width: 100%;
+    height:4rem;
+    background-color: #c62f2f;
+    position: fixed;
+    top:0;
+    z-index: 99;
+    box-shadow: 1px 2px 1px rgba(0,0,0,0.3);
+    .search-ico-wrap{
+        float: right;
+        padding: 0.9rem;
+        transform: scale(1.5);
+    }
+}
 .toplist{
     background-color:#fdfdfd;
-}
-.icon-search {
-    
-}
-.icon-search:before,.icon-search:after{
-    content:'';
-}
-.icon-search:before{
-    border-radius: 50%;
-    border:1rem solid #c62f2f;
-    width:2rem;
-    height:2rem;
 }
 .list-type{
     display: flex;

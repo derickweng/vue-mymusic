@@ -31,6 +31,7 @@ module.exports = {
       'services':resolve('src/services/index.js'),
       'api':resolve('src/services/api.js'),
       'views':resolve('src/views'),
+      'store':resolve('src/store'),
       'components': resolve('src/components')
     }
   },

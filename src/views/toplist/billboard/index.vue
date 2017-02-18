@@ -15,6 +15,7 @@
 <script>
 import listImg from 'assets/img/2.jpg'
 export default {
+    name : 'billboard',
     data () {
         return {
              listContent : [
@@ -37,7 +38,7 @@ export default {
     // },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .billboard-wrap{
     padding-top:1rem;
 }
@@ -61,9 +62,9 @@ export default {
 .ban-l{
     flex:1;
     padding: 1rem 0.5rem 0 1rem;
-}
-.ban-l img {
-    width:100%;
+    img {
+        width:100%;
+    }
 }
 .ban-r{
     flex:2;

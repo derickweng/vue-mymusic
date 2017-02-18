@@ -1,0 +1,117 @@
+/*
+	提取组件的公共图标样式放在这里,有些图标做的不够好欢迎提建议~
+	by https://github.com/derickweng
+*/
+.icon-search { 
+    display: block;
+    position: relative;
+    width:1.5rem;
+    height:1.5rem;
+    &:before,&:after{
+        content:'';
+        display: block;
+        position: absolute;
+    }
+    &:before{
+        border-radius: 50%;
+        border:0.2rem solid white;
+        width:0.5rem;
+        height:0.5rem;
+       	top:0.5rem;
+    }
+    &:after{
+        width:0.5rem;
+        height:0.2rem;
+        background-color:white;
+        top:1.3rem;
+        left:0.6rem;
+        transform: rotate(45deg);
+    }
+}
+
+.icon-list {
+    position: relative;
+    &,&:before,&:after{ 
+        display: block;
+        width:0.2rem;
+        height:0.2rem;
+        border-width:0 1rem 0 0.2rem;
+        border-color:#c62f2f;
+        border-style:solid;
+    }
+    &:before {
+        top : -0.4rem;
+    }
+    &:after {
+        top: 0.4rem;
+    }
+    &:before, &:after {
+        content : '';
+        position: absolute;
+        left:-0.18rem;
+    }
+}
+
+.audio-next{
+    position:relative;
+    width:2rem;
+    height:2rem;
+    display: flex;
+    align-items: center;
+    .next-line:before,.next-line:after{
+        content:'';
+        display: block;
+        position: absolute;
+        width:1.1rem;
+    }
+    .next-line,.next-line:before,.next-line:after{
+        height:2px;
+        background-color: #c62f2f;
+    }
+    .next-line{
+        width:1rem;
+        transform: rotate(90deg);
+    }
+    .next-line:before{
+        transform: rotate(-63deg);
+        left: -0.3rem;
+        top: -0.5rem;
+    }
+    .next-line:after{
+        transform: rotate(63deg);
+        left: 0.2rem;
+        top: -0.5rem;
+    }
+    .line-right{
+        position: absolute;
+        top: 0.5rem;
+        left : 1.5rem;
+        height: 1rem;
+        width: 2px;
+        background-color: #c62f2f;
+    }
+}
+.audio-control{
+	 border-radius:50%;
+     width:2rem;
+     height:2rem;
+     border:2px solid #c62f2f;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+	.audio-pause {
+        width:0;
+        height:0;
+        border-width:0.4rem 0 0.4rem 0.6rem;
+        margin-left: 0.2rem;
+        border-style:solid;
+        border-color:transparent transparent transparent #c62f2f;
+    }
+    .audio-playing {
+        width: 0.2rem;
+        height: 1rem;
+        border-width: 0 0.2rem 0 0.2rem;
+        border-style: solid;
+        border-color: transparent #c62f2f transparent #c62f2f;
+    }
+}  

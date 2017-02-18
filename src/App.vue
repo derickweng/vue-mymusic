@@ -1,18 +1,26 @@
 <template>
   <div class="app">
     <router-view></router-view>
+    <playlist></playlist>
+    <search></search>  
   </div>
 </template>
 <script>
 import API from 'api'
+import playlist from 'components/playlist'
+import search from 'components/search'
 export default {
   name: 'app',
+  components : {
+    playlist,
+    search
+  },
   beforeMount () {
     this.setFontSize(640)//按照设计稿大小传入640
   },
-  mounted () {
+  // mounted () {
     // console.log(a)
-  },
+  // },
   methods : {
     setFontSize(designSize){
       let docEl = document.documentElement,
@@ -21,9 +29,8 @@ export default {
               const clientWidth = docEl.clientWidth;
               if (!clientWidth) {
                 return
-              }
-              const sizeScale = Math.ceil(20 * (clientWidth / designSize)) 
-              docEl.style.fontSize = sizeScale%2 === 0 ?sizeScale : (sizeScale+1) + 'px';//尽量偶数是为了避免在浏览器产生渲染质量问题
+              } 
+              docEl.style.fontSize = 20 * (clientWidth / designSize) + 'px';
             };
       if (!docEl.style.fontSize) {
         recalc()
@@ -34,3 +41,5 @@ export default {
 }
 </script>
 <style src="assets/css/reset.css"></style>
+<style src="assets/css/layout.css"></style>
+<style src="assets/css/icon.scss" lang="scss"></style>
