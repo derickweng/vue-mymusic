@@ -1,7 +1,8 @@
 <template>
     <div class="top-wrap">
        <div class="toplist">
-            <div class="icon-search"></div>
+            <div class="icon-search">
+            </div>
             <banner></banner>
             <div class="list-wrap">
                 <ul class="list-type"   @click="listActive($event)">
@@ -61,7 +62,19 @@ export default{
 </script>
 <style scoped>
 .toplist{
-  background-color:#fdfdfd;
+    background-color:#fdfdfd;
+}
+.icon-search {
+    
+}
+.icon-search:before,.icon-search:after{
+    content:'';
+}
+.icon-search:before{
+    border-radius: 50%;
+    border:1rem solid #c62f2f;
+    width:2rem;
+    height:2rem;
 }
 .list-type{
     display: flex;

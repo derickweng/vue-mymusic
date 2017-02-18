@@ -10,10 +10,7 @@
         </div>
         <ul class="nav-button">
             <li class="nav-btn-items">
-                <!-- <span class="listline"></span> -->
-                <span class="icon-list">
-                    <a href="javascript:;"></a>
-                </span>
+                <span class="icon-list"></span>
             </li>
             <li class="nav-btn-items" @click="audioActived = !audioActived">
                 <div class="audio-control">
@@ -97,18 +94,28 @@ export default {
         border-style: solid;
         border-color: transparent #c62f2f transparent #c62f2f;
     }
-    .nav-btn-items .listline{
+    .icon-list {
+        position: relative;
+    }
+    .icon-list,.icon-list:before, .icon-list:after{ 
         display: block;
         width:0.2rem;
         height:0.2rem;
         border-width:0 1rem 0 0.2rem;
         border-color:#c62f2f;
-        margin-top: 0.4rem;
+        border-style:solid;
     }
-    .icon-list{
-        position: relative;
+    .icon-list:before {
+        top : -0.4rem;
     }
-    .
+    .icon-list:after {
+        top: 0.4rem;
+    }
+    .icon-list:before, .icon-list:after {
+        content : '';
+        position: absolute;
+        left:-0.18rem;
+    }
     .playingList{
         position: relative;
     }
@@ -123,9 +130,6 @@ export default {
         border-width:0 1rem 0 0.2rem;
         border-color:#c62f2f;
         margin-top: 0.4rem;
-    }
-    .nav-btn-items .listline:first-child{
-        margin-top: 0;
     }
     .next-line:before,.next-line:after{
         content:'';
