@@ -13,8 +13,8 @@ export default {
   methods : {
     setFontSize(designSize){
       let docEl = document.documentElement,
-            resizeEvt = 'orientationchange' in window?'orientationchage':'resize',
-            recalc = function(){
+            resizeEvent = 'orientationchange' in window?'orientationchage':'resize',
+            reloadFont = function(){
               const clientWidth = docEl.clientWidth;
               if (!clientWidth) {
                 return
@@ -22,9 +22,9 @@ export default {
               docEl.style.fontSize = 20 * (clientWidth / designSize) + 'px';
             };
       if (!docEl.style.fontSize) {
-        recalc()
+        reloadFont()
       }
-      window.addEventListener(resizeEvt,recalc,false);
+      window.addEventListener(resizeEvent,reloadFont,false);
     }
   }
 }
