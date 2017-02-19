@@ -5,8 +5,9 @@
 .icon-search { 
     display: block;
     position: relative;
-    width:1.5rem;
-    height:1.5rem;
+    width:1.5em;
+    height:1.5em;
+    cursor:pointer;
     &:before,&:after{
         content:'';
         display: block;
@@ -14,104 +15,133 @@
     }
     &:before{
         border-radius: 50%;
-        border:0.2rem solid white;
-        width:0.5rem;
-        height:0.5rem;
-       	top:0.5rem;
+        border:0.2em solid white;
+        width:0.5em;
+        height:0.5em;
+       	top:0.5em;
     }
     &:after{
-        width:0.5rem;
-        height:0.2rem;
+        width:0.5em;
+        height:0.2em;
         background-color:white;
-        top:1.3rem;
-        left:0.6rem;
+        top:1.3em;
+        left:0.6em;
         transform: rotate(45deg);
     }
 }
 
 .icon-list {
     position: relative;
+    cursor:pointer;
     &,&:before,&:after{ 
         display: block;
-        width:0.2rem;
-        height:0.2rem;
-        border-width:0 1rem 0 0.2rem;
+        width:0.2em;
+        height:0.2em;
+        border-width:0 1em 0 0.2em;
         border-color:#c62f2f;
         border-style:solid;
     }
     &:before {
-        top : -0.4rem;
+        top : -0.4em;
     }
     &:after {
-        top: 0.4rem;
+        top: 0.4em;
     }
     &:before, &:after {
         content : '';
         position: absolute;
-        left:-0.18rem;
+        left:-0.18em;
     }
 }
 
 .audio-next{
     position:relative;
-    width:2rem;
-    height:2rem;
+    width:2em;
+    height:2em;
     display: flex;
     align-items: center;
+    cursor:pointer;
     .next-line:before,.next-line:after{
         content:'';
         display: block;
         position: absolute;
-        width:1.1rem;
+        width:1.1em;
     }
     .next-line,.next-line:before,.next-line:after{
-        height:2px;
+        height:0.1em;
         background-color: #c62f2f;
     }
     .next-line{
-        width:1rem;
+        width:1em;
         transform: rotate(90deg);
     }
     .next-line:before{
         transform: rotate(-63deg);
-        left: -0.3rem;
-        top: -0.5rem;
+        left: -0.3em;
+        top: -0.5em;
     }
     .next-line:after{
         transform: rotate(63deg);
-        left: 0.2rem;
-        top: -0.5rem;
+        left: 0.2em;
+        top: -0.5em;
     }
     .line-right{
         position: absolute;
-        top: 0.5rem;
-        left : 1.5rem;
-        height: 1rem;
-        width: 2px;
+        top: 0.5em;
+        left : 1.5em;
+        height: 1em;
+        width: 0.1em;
         background-color: #c62f2f;
     }
 }
-.audio-control{
+.icon-audio{
 	 border-radius:50%;
-     width:2rem;
-     height:2rem;
-     border:2px solid #c62f2f;
+     width:2em;
+     height:2em;
+     border:0.1em solid #c62f2f;
      display: flex;
      justify-content: center;
      align-items: center;
+     cursor:pointer;
 	.audio-pause {
         width:0;
         height:0;
-        border-width:0.4rem 0 0.4rem 0.6rem;
-        margin-left: 0.2rem;
+        border-width:0.4em 0 0.4em 0.6em;
+        margin-left: 0.2em;
         border-style:solid;
         border-color:transparent transparent transparent #c62f2f;
     }
     .audio-playing {
-        width: 0.2rem;
-        height: 1rem;
-        border-width: 0 0.2rem 0 0.2rem;
+        width: 0.2em;
+        height: 1em;
+        border-width: 0 0.2em 0 0.2em;
         border-style: solid;
         border-color: transparent #c62f2f transparent #c62f2f;
     }
 }  
+
+.icon-back {
+    font-size:1rem;
+    width:2.2em;
+    height:0.1em;
+    background-color:white;
+    display:inline-block;
+    position:relative;
+    &:before,&:after{
+        display: block;
+        content:'';
+        width:1.6em;
+        height:0.2em;
+        position:absolute;
+        background-color:white;
+        left:-0.2em;
+    }
+    &:before {
+        top:-0.5em;
+        transform:rotate(-40deg);
+    }
+    &:after {
+        top:0.5em;
+        transform:rotate(40deg);
+    }
+}

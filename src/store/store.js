@@ -5,6 +5,7 @@ export default new Vuex.Store({
 	state:{
 		playlistToggle : false,
 		showSearch : false,
+		tranStyle : 'downslide',
 	},
 	mutations:{
 		increPlaylist (state) {
@@ -12,6 +13,19 @@ export default new Vuex.Store({
 		},
 		incresearch (state) {
 			state.showSearch = !state.showSearch
+		},
+		increTranStyle (state,style) {
+			state.tranStyle = style
+		}
+	},
+	actions : {
+		increTranStyle (context,style) {
+			return new Promise((resolve,reject) => {
+				context.commit('increTranStyle',style)
+				if(context.state.tranStyle === style) {
+					resolve()
+				}
+			})
 		}
 	}
 

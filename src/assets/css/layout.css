@@ -16,7 +16,20 @@
 .rightslide-enter-active,.rightslide-leave-active{
 	transition:transform .5s;
 }
-.rightslide-enter,.right-leave-active{
+.rightslide-enter,.rightslide-leave-active{
 	transform: translateX(100%);
 }
 
+.leftslide-enter-active,.leftslide-leave-active{
+	transition:transform .5s;
+}
+.leftslide-enter,.leftslide-leave-active{
+	transform: translateX(-100%);
+}
+
+.scale-enter-active,.scale-leave-active{
+	transition:transform .5s;
+}
+.scale-enter,.scale-leave-active {
+	transform: scale(0.8)
+}

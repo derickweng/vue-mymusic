@@ -1,26 +1,15 @@
 <template>
   <div class="app">
     <router-view></router-view>
-    <playlist></playlist>
-    <search></search>  
   </div>
 </template>
 <script>
 import API from 'api'
-import playlist from 'components/playlist'
-import search from 'components/search'
 export default {
   name: 'app',
-  components : {
-    playlist,
-    search
-  },
   beforeMount () {
     this.setFontSize(640)//按照设计稿大小传入640
   },
-  // mounted () {
-    // console.log(a)
-  // },
   methods : {
     setFontSize(designSize){
       let docEl = document.documentElement,

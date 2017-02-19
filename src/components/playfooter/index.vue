@@ -1,32 +1,34 @@
 <template>
-    <div class="playfooter">
-        <div class="playmsg">
-            <p class="song-name">
-                全世界东北话
-            </p>
-            <p class="song-artist">
-                DBbosy组合
-            </p>
+    <transition name="downslide">
+        <div class="playfooter">
+            <div class="playmsg"  @click="goPlaying">
+                <p class="song-name">
+                    全世界东北话
+                </p>
+                <p class="song-artist">
+                    DBbosy组合
+                </p>
+            </div>
+            <ul class="nav-button">
+                <li class="nav-btn-items" @click="showplaylist">
+                    <span class="icon-list"></span>
+                </li>
+                <li class="nav-btn-items" @click="audioActived = !audioActived">
+                    <div class="icon-audio">
+                        <div :class="[audioActived?'audio-playing':'audio-pause']"></div>
+                    </div>  
+                </li>
+                <li class="nav-btn-items">
+                    <div class="audio-next">
+                            <div class="next-line"></div>
+                            <div class="line-right"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="playbar">
+            </div>
         </div>
-        <ul class="nav-button">
-            <li class="nav-btn-items" @click="showplaylist">
-                <span class="icon-list"></span>
-            </li>
-            <li class="nav-btn-items" @click="audioActived = !audioActived">
-                <div class="audio-control">
-                    <div :class="[audioActived?'audio-playing':'audio-pause']"></div>
-                 </div>  
-            </li>
-            <li class="nav-btn-items">
-                 <div class="audio-next">
-                        <div class="next-line"></div>
-                        <div class="line-right"></div>
-                </div>
-            </li>
-        </ul>
-        <div class="playbar">
-        </div>
-    </div>
+    </transition>
 </template>
 <script type="text/javascript">
 export default {
@@ -37,9 +39,17 @@ export default {
         }
     },
     methods : {
-        showplaylist(){
+        goPlaying () {
+            this.$store.dispatch('increTranStyle','downslide').then(()=>{
+                this.$router.push({
+                     path : 'playing'
+                })
+            })
+            
+        },
+        showplaylist () {
             this.$store.commit('increPlaylist')
-        }
+        },
     }
 }
 </script>

@@ -1,29 +1,35 @@
 <template>
-    <div class="top-wrap">
-       <div class="toplist">
-            <header class="topheader">
-                <a href="javascript:;" class="search-ico-wrap">   
-                    <sapn class="icon-search" @click="stateSearch"></span>
-                </a>
-            </header>
-            <banner :bannerlist="bannerlist"></banner>
-            <div class="list-wrap">
-                <ul class="list-type"   @click="listActive($event)">
-                    <li class="list-type-item" index="0">排行榜</li>
-                    <li class="list-type-item"  index="1">歌单</li>
-                    <li class="list-type-item"  index="2">个性推荐</li>
-                    <li class="list-type-item"  index="3">主播电台</li>
-                </ul>
-                <div class="list-bar" :style="nowType"></div>
+    <transition :name="tranStyle">
+        <div class="top-wrap">
+            <div class="toplist">
+                <header class="topheader">
+                    <a href="javascript:;" class="search-ico-wrap">   
+                        <span class="icon-search" @click="stateSearch"></span>
+                    </a>
+                </header>
+                <banner :bannerlist="bannerlist"></banner>
+                <div class="list-wrap">
+                    <ul class="list-type"   @click="listActive($event)">
+                        <li class="list-type-item" index="0">排行榜</li>
+                        <li class="list-type-item"  index="1">歌单</li>
+                        <li class="list-type-item"  index="2">个性推荐</li>
+                        <li class="list-type-item"  index="3">主播电台</li>
+                    </ul>
+                    <div class="list-bar" :style="nowType"></div>
+                </div>
+                <router-view></router-view>
             </div>
-            <router-view></router-view>
+            <playfooter></playfooter> 
+            <playlist></playlist>
+            <search></search>
         </div>
-        <playfooter></playfooter>  
-    </div>
+    </transition>
 </template>
 <script>
 import banner from './banner'
 import playfooter from 'components/playfooter'
+import playlist from 'components/playlist'
+import search from 'components/search'
 import API from 'api'
 import img from 'assets/img/1.jpg'
 import {mapState} from 'vuex'
@@ -31,7 +37,9 @@ export default{
     name : 'toplist',
     components : {
         banner,
-        playfooter
+        playfooter,
+        playlist,
+        search
     },
     data (){
         return {
@@ -54,7 +62,8 @@ export default{
     },
     computed : {
         ...mapState({
-            showSearch : state => state.showSearch
+            showSearch : state => state.showSearch,
+            tranStyle : state => state.tranStyle
         })
     },
     mounted(){

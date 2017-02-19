@@ -31,11 +31,6 @@ export default {
             ]
         }
     },
-    // watch : {
-    //     $route (to,from) {
-    //         console.log(from)
-    //     }
-    // },
 }
 </script>
 <style scoped lang="scss">

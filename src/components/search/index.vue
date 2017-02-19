@@ -8,11 +8,44 @@
 			</transition>
 		</div>
 		<transition name="downslide">
-				<ol class="searchlist" v-show="showSearch" @click="toggleSearch($event)">
-					<!-- <ol class="search-ol"> -->
-						<li class="search-items"><span>1.</span><span>摆渡人</span><span>热度:18910</span></li>	
-					<!-- </ol> -->
-				</ol>	
+				<div class="search-list-warp" v-show="showSearch"  @click="toggleSearch($event)" v-flowScroll="showSearch">
+					<ol class="searchlist">
+						<!-- <ol class="search-ol"> -->
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+							<li class="search-items"><span>1.</span><span class="songname">摆渡人</span><span class="hot-res">热度:18910</span></li>	
+						<!-- </ol> -->
+					</ol>	
+				</div>
 		</transition>
 	</div>
 </template>
@@ -24,12 +57,12 @@ export default {
 	},
 	directives : {
 		focus : {
-			update (el,binding) {
-					if (binding.value) {
-						el.focus()
-					}
+			update (el, binding) {
+				if (binding.value) {
+					el.focus()
+				}
 			}
-		}
+		},
 	},
 	computed : {
 		showSearch : function() {
@@ -59,7 +92,7 @@ export default {
     	margin-top: 1rem;
 	}
 	.searchtext {
-		width:21rem;
+		width:18rem;
 		height: 100%;
 		line-height: 100%;
 		font-size: 1.2rem;
@@ -75,14 +108,28 @@ export default {
 	height:3rem;
 	line-height: 3rem;
 	padding-left: 3rem;
+	.songname {
+		display: inline-block;
+		max-width:21rem;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		vertical-align:top;
+	}
+	.hot-res {
+		float: right;
+		margin-right:4rem;
+		font-size:0.8rem;
+	}
 }
-.searchlist{
+.search-list-warp {
 	position: fixed;
 	bottom:0;
 	z-index: 100;
-	width: 100%;
+	overflow: auto;
 	height: calc(100% - 4rem);
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.8);
+	width: 100%;
 	color: white;
 }
 </style>

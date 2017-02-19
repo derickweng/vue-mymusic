@@ -34,9 +34,9 @@ export default {
             const [...saveImg] = this.bannerlist;
             //  saveImg.unshift(imglast)     
             //  saveImg.push(imgfirst)
-            if (this.nowSlider >= this.bannerlist.length-1) {
+            // if (this.nowSlider >= this.bannerlist.length-1) {
                 // saveImg.push(this.bannerlist[0])
-             }
+            //  }
              // console.log(saveImg)
             return saveImg
         },
@@ -57,7 +57,7 @@ export default {
                 this.sliderActive = Object.assign({},{
                     transform: `translate3d(${-100*(this.nowSlider)}%,0,0)`
                 })  
-                if (this.nowSlider === sliderLength-1) {
+                // if (this.nowSlider === sliderLength-1) {
                     // this.sliderImg.shift()
                     // this.sliderImg.push(this.bannerlist[0])
                     // this.sliderActive = Object.assign({},{
@@ -66,9 +66,9 @@ export default {
                     // })
                     // this.nowSlider = 0
                     // return;
-                } else {
+                // } else {
 
-                }          
+                // }          
             },3000)
         } 
     }
@@ -77,7 +77,7 @@ export default {
 <style scoped>
 .banner{
    position:relative;
-   margin-top: 4rem;
+   margin-top:4rem;
 }
 .banner-page{
    position:absolute;
