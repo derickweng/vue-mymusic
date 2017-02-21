@@ -37,6 +37,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '~assets/css/theme.scss';
 .mask {
 	position: fixed;
 	width:100%;
@@ -49,6 +50,7 @@ export default {
 	position: absolute;
 	bottom: 0;
 	width:calc(100% - 2rem);
+	height:50%;
 	background-color: #fbfbfb;
 	padding:0.5rem 1rem;
 }
@@ -61,6 +63,7 @@ export default {
 		flex:5;
 		text-align: center;
 		padding-left: 3rem;
+		color:black;
 	}
 	.clearList {
 		float: right;
@@ -70,7 +73,7 @@ export default {
 	}
 }
 .playlist-art {
-	min-height: 50vh;
+	height:100%;
 	overflow: auto;
 	.list-li {
 		border-bottom: 1px solid #ccc;
@@ -106,10 +109,10 @@ export default {
 	}
 	.list-li.active {
 		.songname {
-			color:#c62f2f;
+			color:$themeColor;
 		}
 		.songart{
-			color:#c62f2f;
+			color:$themeColor;
 		}
 	}
 }

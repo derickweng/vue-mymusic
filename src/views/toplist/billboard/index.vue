@@ -1,14 +1,12 @@
 <template>
     <div class="billboard-wrap">
-        <div class="board-title">官方榜</div>
         <ul class="billboard">
-            <li class="billboard-item" v-for="item in listContent">
+            <li class="billboard-item" v-for="item in listContent" @click="gotlist">
                 <div class="ban-l"><img :src="item.url"></div>
                 <ol class="ban-r">
                     <li>1.送情郎-岳云鹏/好妹妹乐队</li>
                 </ol>
             </li>
-            <li class="billboard-item"></li>
         </ul>
     </div>
 </template>
@@ -31,24 +29,24 @@ export default {
             ]
         }
     },
+    methods : {
+        gotlist () {
+            this.$store.dispatch('increTranStyle','leftslide').then(() => {
+                this.$router.push({
+                    name : 'list'
+                })
+            })
+        }
+    }
 }
 </script>
 <style scoped lang="scss">
+@import '~assets/css/theme.scss';
+.billboard {
+    padding-bottom:4rem;
+}
 .billboard-wrap{
     padding-top:1rem;
-}
-.board-title{
-    margin-left:2rem;
-    position: relative;
-}
-.board-title:before {
-    width: 0.5rem;
-    background-color: #c62f2f;
-    height: 1.5rem;
-    display: block;
-    position: absolute;
-    left: -1rem;
-    content: '';
 }
 .billboard-item{
     display: flex;

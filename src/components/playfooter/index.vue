@@ -1,51 +1,54 @@
 <template>
-    <transition name="downslide">
-        <div class="playfooter">
-            <div class="playmsg"  @click="goPlaying">
-                <p class="song-name">
-                    全世界东北话
-                </p>
-                <p class="song-artist">
-                    DBbosy组合
-                </p>
+        <div class="footer-warp">
+            <div class="playfooter">
+                <div class="playmsg"  @click="goPlaying">
+                    <p class="song-name">
+                        全世界东北话
+                    </p>
+                    <p class="song-artist">
+                        DBbosy组合
+                    </p>
+                </div>
+                <ul class="nav-button">
+                    <li class="nav-btn-items" @click="showplaylist">
+                        <span class="icon-list"></span>
+                    </li>
+                    <li class="nav-btn-items" @click="togglePlaying">
+                        <div class="icon-audio">
+                            <div :class="[audioActived?'audio-playing':'audio-pause']"></div>
+                        </div>  
+                    </li>
+                    <li class="nav-btn-items">
+                        <div class="audio-next">
+                                <div class="next-line"></div>
+                                <div class="line-right"></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-button">
-                <li class="nav-btn-items" @click="showplaylist">
-                    <span class="icon-list"></span>
-                </li>
-                <li class="nav-btn-items" @click="audioActived = !audioActived">
-                    <div class="icon-audio">
-                        <div :class="[audioActived?'audio-playing':'audio-pause']"></div>
-                    </div>  
-                </li>
-                <li class="nav-btn-items">
-                    <div class="audio-next">
-                            <div class="next-line"></div>
-                            <div class="line-right"></div>
-                    </div>
-                </li>
-            </ul>
             <div class="playbar">
             </div>
         </div>
-    </transition>
 </template>
 <script type="text/javascript">
 export default {
     name : 'playfooter',
     data () {
         return {
-            audioActived : true
+            // audioActived : true
+        }
+    },
+    computed : {
+        audioActived : function() {
+            return  this.$store.state.playing
         }
     },
     methods : {
         goPlaying () {
-            this.$store.dispatch('increTranStyle','downslide').then(()=>{
-                this.$router.push({
-                     path : 'playing'
-                })
-            })
-            
+            this.$emit('routego','playing')
+        },
+        togglePlaying () {
+            this.$store.commit('increPlaying')
         },
         showplaylist () {
             this.$store.commit('increPlaylist')
@@ -53,15 +56,18 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .playfooter {
+<style scoped lang="scss">
+@import '~assets/css/theme.scss';
+    .footer-warp {
         position:fixed;
-        bottom:0.2rem;
+        bottom:0;
         z-index:99;
         width:100%;
         background-color: rgba(255, 255, 255, 0.9);
-        height:4rem;
+    }
+    .playfooter {
         display: flex;
+        height:4rem;
     }
     .playmsg{
         flex:3;
@@ -83,12 +89,20 @@ export default {
         justify-content: center;
         align-items: center;
     }
+    .icon-audio {
+        color:$themeColor;
+    }
+    .icon-list {
+        color:$themeColor;
+    }
+    .audio-next {
+        color:$themeColor;
+    }
     .playbar {
-        position: absolute;
-        bottom: -0.2rem;
-        background-color: #c62f2f;
-        width: 10vw;
+        background-color: $themeColor;
+        width: 10%;
+        max-width:100%;
+        overflow:hidden;
         height: .2rem;
-        left: 0;
     }
 </style>

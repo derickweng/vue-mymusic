@@ -1,7 +1,7 @@
 <template>
-  <div class="app">
-    <router-view></router-view>
-  </div>
+    <div class="app">
+        <router-view></router-view>
+    </div>
 </template>
 <script>
 import API from 'api'
@@ -10,6 +10,12 @@ export default {
   beforeMount () {
     this.setFontSize(640)//按照设计稿大小传入640
   },
+  // computed : {
+  //   transtyle : function () {
+  //     console.log(this.$store.state.tranStyle)
+  //     return this.$store.state.tranStyle
+  //   }
+  // },
   methods : {
     setFontSize(designSize){
       let docEl = document.documentElement,
@@ -30,5 +36,5 @@ export default {
 }
 </script>
 <style src="assets/css/reset.css"></style>
-<style src="assets/css/layout.css"></style>
+<style src="assets/css/layout.scss" lang="scss"></style>
 <style src="assets/css/icon.scss" lang="scss"></style>

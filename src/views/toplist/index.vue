@@ -1,5 +1,5 @@
 <template>
-    <transition :name="tranStyle">
+    <transition :name="transtyle">
         <div class="top-wrap">
             <div class="toplist">
                 <header class="topheader">
@@ -19,7 +19,9 @@
                 </div>
                 <router-view></router-view>
             </div>
-            <playfooter></playfooter> 
+            <transition name="downslide">
+                <playfooter @routego="routego" v-if="showHeader"></playfooter> 
+            </transition>
             <playlist></playlist>
             <search></search>
         </div>
@@ -47,6 +49,7 @@ export default{
                 width:'',
                 left : ''
             },
+            showHeader : false,
             bannerlist : [
                 {
                     url : img
@@ -60,10 +63,17 @@ export default{
             ]
         }
     },
+    beforeRouteEnter (to, from, next) {
+        next(vm => {
+            setTimeout(() => {
+                vm.showHeader = true
+            }, 100);
+        })
+    },
     computed : {
         ...mapState({
             showSearch : state => state.showSearch,
-            tranStyle : state => state.tranStyle
+            transtyle : state => state.tranStyle
         })
     },
     mounted(){
@@ -86,6 +96,13 @@ export default{
         // }
     // },
     methods : {
+        routego(name) {
+            this.$store.dispatch('increTranStyle','downslide').then(() => {
+                this.$router.push({
+                    name : name
+                })
+            })
+        },
         stateSearch () {
             this.$store.commit('incresearch')
         },
@@ -103,10 +120,11 @@ export default{
 }
 </script>
 <style scoped lang="scss">
+@import '~assets/css/theme.scss';
 .topheader{
     width: 100%;
-    height:4rem;
-    background-color: #c62f2f;
+    height:4.1rem;
+    background-color: $themeColor;
     position: fixed;
     top:0;
     z-index: 99;
@@ -117,8 +135,12 @@ export default{
         transform: scale(1.5);
     }
 }
+.icon-search {
+    color:white;
+}
 .toplist{
     background-color:#fdfdfd;
+    padding-top:4rem;
 }
 .list-type{
     display: flex;
@@ -135,8 +157,8 @@ export default{
     height:2px;
     left:0;
     width:6.5rem;
-    transition: all .3s;
-    background-color: #c62f2f;
+    transition: left .3s;
+    background-color:  $themeColor;
 }
 .list-type-item{
     flex:1;

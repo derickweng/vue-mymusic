@@ -1,5 +1,6 @@
 /*
 	提取组件的公共图标样式放在这里,有些图标做的不够好欢迎提建议~
+    颜色基本使用currentColor继承来自color设置的颜色
 	by https://github.com/derickweng
 */
 .icon-search { 
@@ -15,7 +16,7 @@
     }
     &:before{
         border-radius: 50%;
-        border:0.2em solid white;
+        border:0.2em solid currentColor;
         width:0.5em;
         height:0.5em;
        	top:0.5em;
@@ -23,7 +24,7 @@
     &:after{
         width:0.5em;
         height:0.2em;
-        background-color:white;
+        background-color:currentColor;
         top:1.3em;
         left:0.6em;
         transform: rotate(45deg);
@@ -38,7 +39,7 @@
         width:0.2em;
         height:0.2em;
         border-width:0 1em 0 0.2em;
-        border-color:#c62f2f;
+        border-color:currentColor;
         border-style:solid;
     }
     &:before {
@@ -69,7 +70,7 @@
     }
     .next-line,.next-line:before,.next-line:after{
         height:0.1em;
-        background-color: #c62f2f;
+        background-color: currentColor;
     }
     .next-line{
         width:1em;
@@ -91,14 +92,14 @@
         left : 1.5em;
         height: 1em;
         width: 0.1em;
-        background-color: #c62f2f;
+        background-color: currentColor;
     }
 }
 .icon-audio{
 	 border-radius:50%;
      width:2em;
      height:2em;
-     border:0.1em solid #c62f2f;
+     border:0.1em solid currentColor;
      display: flex;
      justify-content: center;
      align-items: center;
@@ -109,22 +110,23 @@
         border-width:0.4em 0 0.4em 0.6em;
         margin-left: 0.2em;
         border-style:solid;
-        border-color:transparent transparent transparent #c62f2f;
+        border-color:transparent transparent transparent currentColor;
     }
     .audio-playing {
         width: 0.2em;
         height: 1em;
         border-width: 0 0.2em 0 0.2em;
         border-style: solid;
-        border-color: transparent #c62f2f transparent #c62f2f;
+        border-color: transparent currentColor transparent currentColor;
+        margin:0 auto;
     }
 }  
 
 .icon-back {
     font-size:1rem;
     width:2.2em;
-    height:0.1em;
-    background-color:white;
+    height:0.2em;
+    background-color:currentColor;
     display:inline-block;
     position:relative;
     &:before,&:after{
@@ -133,7 +135,7 @@
         width:1.6em;
         height:0.2em;
         position:absolute;
-        background-color:white;
+        background-color:currentColor;
         left:-0.2em;
     }
     &:before {
@@ -144,4 +146,38 @@
         top:0.5em;
         transform:rotate(40deg);
     }
+}
+.icon-next {
+    border: 0.1em solid currentColor;
+    width: 1.5em;
+    height:1.5em;
+    position:relative;
+    border-radius:50%;
+   &:before{
+     content:'';
+     display:block;
+      width:0;
+      height:0;
+      border-style:solid;
+      border-color:transparent currentColor;
+      border-width:0.3em 0 0.3em 0.5em;
+      position:absolute;
+      top:30%;
+      left:35%;
+    }
+   &:after{
+       content:'';
+       display:block;
+        width:0.5em;
+        height:0.1em;
+       background-color:currentColor;
+       transform: rotate(90deg);
+        position:absolute;
+         left:50%;
+        top:45%;
+    }
+}
+.icon-pre {
+   @extend .icon-next;
+   transform:rotate(-180deg);
 }

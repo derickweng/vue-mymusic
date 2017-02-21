@@ -1,0 +1,72 @@
+/*
+vue动画公共样式都取出来放这里了
+by https://github.com/derickweng
+*/
+
+.transstyle { /*为了在使用transition切换时router时，组件之间样式保持位置不相互影响,不过要注意样式width和height继承问题 */
+	position:fixed;
+	bottom:0;
+	z-index:1000;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+
+.downslide-enter-active,.downslide-leave-active{
+	transition:transform 0.5s;
+}
+.downslide-enter,.downslide-leave-active{
+	transform:translateY(100%);
+	@extend .transstyle
+}
+
+.fade-enter-active,.fade-leave-active{
+	transition:opacity 0.8s;
+}
+.fade-enter,.fade-leave-active{
+	opacity: 0;
+	@extend .transstyle
+}
+
+.topslide-enter-active,.topslide-leave-active{
+	transition:transform .5s;
+}
+.topslide-enter,.topslide-leave-active{
+	transform: translateY(-100%);
+	@extend .transstyle
+}
+
+
+.rightslide-enter-active,.rightslide-leave-active{
+	transition:transform .5s;
+}
+.rightslide-enter,.rightslide-leave-active{
+	transform: translateX(100%);
+	@extend .transstyle
+}
+
+.leftslide-enter-active,.leftslide-leave-active{
+	transition:transform .5s;
+}
+.leftslide-enter,.leftslide-leave-active{
+	transform: translateX(-100%);
+	@extend .transstyle
+}
+
+
+.scale-enter-active,.scale-leave-active{
+	transition:transform .5s;
+}
+.scale-enter,.scale-leave-active {
+	transform: scale(0.8);
+	@extend .transstyle
+}
+
+@keyframes topslide {
+   from {
+      transform : translateY(-100%)
+    },
+    to {
+      transform : translateY(0)
+     }
+}

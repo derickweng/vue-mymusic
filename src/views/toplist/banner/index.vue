@@ -74,10 +74,10 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
+@import '~assets/css/theme.scss';
 .banner{
    position:relative;
-   margin-top:4rem;
 }
 .banner-page{
    position:absolute;
@@ -95,7 +95,7 @@ export default {
     margin-right:0.5rem;
 }
 .slider-btn.active{
-    background:#c62f2f;
+    background:$themeColor;
 }
 .slider-wrap{
     overflow:hidden;
