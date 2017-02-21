@@ -152,7 +152,7 @@ export default {
      }
       .play-warp {
         width:100%;
-        height:100vh;
+        height:100%;
         background: rgba(0,0,0,0.9);
         display: flex;
         flex-direction: column;
@@ -170,7 +170,8 @@ export default {
             display:flex;
             flex:2;
         }
-        .playing-footer {
+     }
+     .playing-footer {
             flex:3;
             .progess {
                 width:90%;
@@ -181,7 +182,7 @@ export default {
             }
             .foot-btn {
                 display: flex;
-                padding-left:4rem;
+                padding-left:6rem;
                 justify-content: center;
                 align-items:center;
                 height:100%;
@@ -199,7 +200,9 @@ export default {
                 height:4rem;
                 padding-top:4rem;
             }
-        }
+     }
+     .icon-back {
+         top:0.9em;
      }
  }   
 </style>

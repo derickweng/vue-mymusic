@@ -20,4 +20,5 @@ li{
 }
 html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+     user-select: none;
 }

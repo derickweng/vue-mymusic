@@ -153,6 +153,9 @@
     height:1.5em;
     position:relative;
     border-radius:50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
    &:before{
      content:'';
      display:block;
@@ -161,23 +164,41 @@
       border-style:solid;
       border-color:transparent currentColor;
       border-width:0.3em 0 0.3em 0.5em;
-      position:absolute;
-      top:30%;
-      left:35%;
     }
    &:after{
-       content:'';
-       display:block;
-        width:0.5em;
+        content:'';
+        display:block;
+        width:0.7em;
         height:0.1em;
-       background-color:currentColor;
-       transform: rotate(90deg);
+        background-color:currentColor;
         position:absolute;
-         left:50%;
         top:45%;
+        left:45%;
+        transform: rotate(90deg) translateY(50%);
     }
-}
-.icon-pre {
+} 
+.icon-pre { //后退
    @extend .icon-next;
    transform:rotate(-180deg);
+}
+
+.icon-song {
+    position:relative;
+    &,&:before,&:after{
+        width:0.5em;
+        height:0.5em;
+        border-radius: 50%;
+        background-color:currentColor;
+    }
+    &:before {
+        top:150%;
+    }
+    &:after  {
+        top:-150%;
+    }
+    &:before,&:after {
+        content:'';
+        display: block;
+        position:absolute;
+    }
 }

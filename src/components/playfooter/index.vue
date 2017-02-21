@@ -1,4 +1,5 @@
 <template>
+<transition name="downslide">
         <div class="footer-warp">
             <div class="playfooter">
                 <div class="playmsg"  @click="goPlaying">
@@ -29,6 +30,7 @@
             <div class="playbar">
             </div>
         </div>
+  </transition>
 </template>
 <script type="text/javascript">
 export default {
