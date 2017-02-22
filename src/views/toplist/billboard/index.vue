@@ -1,7 +1,7 @@
 <template>
     <div class="billboard-wrap">
         <ul class="billboard">
-            <li class="billboard-item loading" v-load="listContent">
+            <li class="billboard-item bill-loading" v-load="listContent">
                 <img :src="loadgif">
             </li>
             <li class="billboard-item" v-for="item in listContent" @click="gotlist(item)">
@@ -14,7 +14,6 @@
     </div>
 </template>
 <script>
-import listImg from 'assets/img/2.jpg'
 import loadgif from 'assets/img/load.gif'
 import API from 'api'
 export default {
@@ -42,15 +41,16 @@ export default {
                 _:new Date().getTime(),
                 callback:'jsonpCallback'
             }).then(res => {
-                if (res.code === 0) {
-                    this.listContent = res.data.topList
-                }
+                this.listContent = res.data.topList
             })
         },
         gotlist (item) {
             this.$store.dispatch('increTranStyle','leftslide').then(() => {
                 this.$router.push({
-                    name : 'list'
+                    name : 'list',
+                    params : {
+                        id : item.id
+                    }
                 })
             })
         }
@@ -59,7 +59,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import '~assets/css/theme.scss';
-.loading img{
+.bill-loading img{
     display:block;
     width:5rem;
     margin:0 auto;

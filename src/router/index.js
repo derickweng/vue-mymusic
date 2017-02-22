@@ -26,7 +26,7 @@ export default new Router({
       component : playing
     },
     {
-      path:'/list',
+      path:'/list/:id',
       name :'list',
       component : list
     },

@@ -1,5 +1,5 @@
 <template>
-    <div class="banner" v-if="bannerlist.length" >
+    <div class="banner">
         <div class="slider-wrap">
             <ul class="slider-items" :style="[sliderActive,{'width':sliderImg.length*100+'vw'}]" @touchstart="stopSlider($event)" @touchmove="moveSlider($event)" @touchend="continSilder($event)">
                 <li class="slider-item" v-for="(item,index) in sliderImg" @click="linkURl(item)"><img :src="getURl(item,index)" class="item-img"></li>
@@ -57,15 +57,17 @@ export default {
             window.open(item[this.linkurl])
         },
         getURl (item,index) {  //用于减少一次性请求，只加载当前的图片，加载之后添加标识
+            if (!item) {
+                return reloadImg
+            }
             if (item.hasload) {
                 return item[this.picurl]
             }
             if (this.nowSlider == index-1) {
                 item.hasload = true
                 return item[this.picurl]
-            } else {
-                return reloadImg
             }
+            return reloadImg
         },
         stopSlider (e) {
             e.preventDefault()

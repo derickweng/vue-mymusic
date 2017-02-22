@@ -21,7 +21,7 @@
             </div>
             <playfooter @routego="routego" @toggleplaying="togglePlaying" @showplaylist="showplaylist" v-if="showHeader"></playfooter> 
             <playlist @playlisttoggle="showplaylist"></playlist>
-            <search></search>
+            <search :showsearch="showSearch" @togglesearch="stateSearch"></search>
         </div>
     </transition>
 </template>
@@ -29,7 +29,7 @@
 import banner from './banner'
 import playfooter from 'components/playfooter'
 import playlist from 'components/playlist'
-import search from 'components/search'
+import search from './search'
 import API from 'api'
 import {mapState} from 'vuex'
 export default{
@@ -46,6 +46,7 @@ export default{
                 width:'',
                 left : ''
             },
+            showSearch : false,
             showHeader : false,
             bannerlist : []
         }
@@ -59,7 +60,6 @@ export default{
     },
     computed : {
         ...mapState({
-            showSearch : state => state.showSearch,
             transtyle : state => state.tranStyle
         })
     },
@@ -82,9 +82,7 @@ export default{
                     callback: 'jsonpCallback'
                 }
             ).then(res=>{
-                if (res.code === 0) {
-                    this.bannerlist = res.data['slider']
-                }
+                this.bannerlist = res.data['slider']
             })
         },
         routego(name) {
@@ -101,7 +99,7 @@ export default{
             this.$store.commit('increPlaylist')
         },
         stateSearch () {
-            this.$store.commit('incresearch')
+            this.showSearch = !this.showSearch
         },
         listActive (e) {
             const eTart = e.target;

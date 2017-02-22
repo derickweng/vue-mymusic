@@ -2,7 +2,6 @@
 vue动画公共样式都取出来放这里了
 by https://github.com/derickweng
 */
-
 .transstyle { /*为了在使用transition切换时router时，组件之间样式保持位置不相互影响,不过要注意样式width和height继承问题 */
 	position:fixed;
 	bottom:0;

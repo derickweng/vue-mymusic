@@ -1,5 +1,5 @@
 import Vue from 'vue'
-Vue.directive('flowScroll',{
+Vue.directive('flowScroll',{ //用于控制滚动条
 	update (el, binding) {
 		if (binding.value) {
 			document.documentElement.style.overflow = 'hidden'

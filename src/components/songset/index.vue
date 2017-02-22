@@ -3,10 +3,10 @@
          <div class="song-add" @click.self="toggleSet">
            <transition name="downslide">
               <div class="song-set" v-if="togglelist">
-                  <div class="song-head">歌曲：还不是因为你长得不好了</div>
+                  <div class="song-head">歌曲：{{targetsong.data.songname}}</div>
                 <ul class="set-items">
-                    <li class="set-item" @click="playImm">立即播放</li>
-                    <li class="set-item" @click="addPlayList">加入到播放列表</li>
+                    <li class="set-item" @click="playImm(targetsong)">立即播放</li>
+                    <li class="set-item" @click="addPlayList(targetsong)">加入到播放列表</li>
                 </ul>
                </div>
             </transition>
@@ -16,6 +16,11 @@
 <script>
 export default {
     name : 'songset',
+    props : {
+        targetsong : {
+            require : true
+        }
+    },
     data () {
         return {
             togglelist : false,
