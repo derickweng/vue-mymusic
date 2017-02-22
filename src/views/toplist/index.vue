@@ -7,7 +7,7 @@
                         <span class="icon-search" @click="stateSearch"></span>
                     </a>
                 </header>
-                <banner :bannerlist="bannerlist"></banner>
+                <banner :bannerlist="bannerlist" :picurl="'picUrl'" :linkurl="'linkUrl'"></banner>
                 <div class="list-wrap">
                     <ul class="list-type"   @click="listActive($event)">
                         <li class="list-type-item" index="0">排行榜</li>
@@ -19,10 +19,8 @@
                 </div>
                 <router-view></router-view>
             </div>
-            <transition name="downslide">
-                <playfooter @routego="routego" v-if="showHeader"></playfooter> 
-            </transition>
-            <playlist></playlist>
+            <playfooter @routego="routego" @toggleplaying="togglePlaying" @showplaylist="showplaylist" v-if="showHeader"></playfooter> 
+            <playlist @playlisttoggle="showplaylist"></playlist>
             <search></search>
         </div>
     </transition>
@@ -33,7 +31,6 @@ import playfooter from 'components/playfooter'
 import playlist from 'components/playlist'
 import search from 'components/search'
 import API from 'api'
-import img from 'assets/img/1.jpg'
 import {mapState} from 'vuex'
 export default{
     name : 'toplist',
@@ -50,17 +47,7 @@ export default{
                 left : ''
             },
             showHeader : false,
-            bannerlist : [
-                {
-                    url : img
-                }, 
-                {
-                    url : img
-                }, 
-                {
-                    url : img
-                }
-            ]
+            bannerlist : []
         }
     },
     beforeRouteEnter (to, from, next) {
@@ -77,31 +64,41 @@ export default{
         })
     },
     mounted(){
-        // API.getLyc().then(res=>{
-        //     console.log(res.data.data)
-        // }).catch(res=>{
-        //     console.log(res)
-        // })
+        this.getbanner()
     },
-    // directives : {
-        // active : {
-            // bind(el,binding){
-            //     const tartWidth = window.getComputedStyle(el).width
-            //     binding = Object.assign({
-            //         width : tartWidth,
-            //         left : el.getAttribute('index')* parseInt(tartWidth)+ 'px'
-            //     })       
-            //     console.log(binding)         
-            // }
-        // }
-    // },
     methods : {
+        getbanner () {
+            API.getbanner(
+                {
+                    g_tk:5381,
+                    uin:0,
+                    format:'jsonp',
+                    inCharset:'utf-8',
+                    outCharset:'utf-8',
+                    notice:0,
+                    platform:'h5',
+                    needNewCode:'1',
+                    _:new Date().getTime(),
+                    callback: 'jsonpCallback'
+                }
+            ).then(res=>{
+                if (res.code === 0) {
+                    this.bannerlist = res.data['slider']
+                }
+            })
+        },
         routego(name) {
             this.$store.dispatch('increTranStyle','downslide').then(() => {
                 this.$router.push({
                     name : name
                 })
             })
+        },
+        togglePlaying () {
+            this.$store.commit('increPlaying')
+        },
+        showplaylist () {
+            this.$store.commit('increPlaylist')
         },
         stateSearch () {
             this.$store.commit('incresearch')

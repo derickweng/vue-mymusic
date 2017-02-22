@@ -2,7 +2,9 @@
     <transition name="rightslide">
         <div class="listdetail" :class="[showHeader?'calcH':'maxH']">
             <header class="list-head">
-                <div class="icon-back" @click="backIndex"></div>
+                <div class="icon-wrap"  @click="backIndex">
+                    <div class="icon-back"></div>
+                </div>
             </header>
             <div class="list-img">
                 <img :src="listImg">
@@ -172,7 +174,7 @@ import songset from 'components/songset'
                 showsongset : false,
             }
         },
-        beforeRouteEnter (to, from ,next) {
+        beforeRouteEnter (to, from, next) {
             next(vm => {
                 setTimeout(()=> {
                     vm.showHeader = true
@@ -191,6 +193,7 @@ import songset from 'components/songset'
                 })
             },
             backIndex () {
+                console.log(this.$router)
                 this.$router.push({
                     name : 'billboard'
                 })
@@ -207,8 +210,11 @@ import songset from 'components/songset'
     height:100vh;
 }
 .listdetail {
-    
     overflow: auto;
+    top:0; /*解决路由切换时此页面向下一段距离*/
+     .icon-wrap {
+         display:inline-block;
+     }
     .icon-back {
         margin:2rem 1rem;
     }

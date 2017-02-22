@@ -35,11 +35,11 @@
 <script type="text/javascript">
 export default {
     name : 'playfooter',
-    data () {
-        return {
-            // audioActived : true
-        }
-    },
+    // data () {
+    //     return {
+    //         // audioActived : true
+    //     }
+    // },
     computed : {
         audioActived : function() {
             return  this.$store.state.playing
@@ -50,10 +50,10 @@ export default {
             this.$emit('routego','playing')
         },
         togglePlaying () {
-            this.$store.commit('increPlaying')
+            this.$emit('toggleplaying')
         },
         showplaylist () {
-            this.$store.commit('increPlaylist')
+             this.$emit('showplaylist')
         },
     }
 }

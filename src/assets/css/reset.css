@@ -22,3 +22,6 @@ html {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
      user-select: none;
 }
+a,button,input,li,div{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}

@@ -10,3 +10,13 @@ Vue.directive('flowScroll',{
 		}
 	}
 })
+
+Vue.directive('load',{
+	update (el, binding) {
+		if (binding.value && binding.value.length) {
+			el.style.display = 'none'
+		} else {
+			el.style.display = 'block'
+		}
+	}
+})

@@ -10,12 +10,6 @@ export default {
   beforeMount () {
     this.setFontSize(640)//按照设计稿大小传入640
   },
-  // computed : {
-  //   transtyle : function () {
-  //     console.log(this.$store.state.tranStyle)
-  //     return this.$store.state.tranStyle
-  //   }
-  // },
   methods : {
     setFontSize(designSize){
       let docEl = document.documentElement,

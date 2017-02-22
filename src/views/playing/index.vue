@@ -64,12 +64,12 @@
                 </footer>
             </div>
             <div class="playbg"></div>
-            <playlist></playlist>
+            <playlist @playlisttoggle="showplaylist"></playlist>
          </div>
     </transition>
 </template>
 <script>
-import img from 'assets/img/1.jpg'
+// import img from 'assets/img/1.jpg'
 import playlist from 'components/playlist'
 export default {
     name : 'playing',
@@ -175,7 +175,6 @@ export default {
             flex:3;
             .progess {
                 width:90%;
-                margin:0 auto;
                 height:0.5rem;
                 border-radius:5px;
                 background:$themeColor;

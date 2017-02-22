@@ -64,10 +64,10 @@ export default {
     .set-item {
         height:3rem;
         line-height: 3rem;
-        &:hover{
+        /*&:hover{
             background-color:#ccc;
             color:$themeColor;
-        }
+        }*/
     }
 }
 </style>

@@ -30,7 +30,7 @@ export default {
 		},
 		close (e) {
 			if (e.target === e.currentTarget) {
-				this.$store.state.playlistToggle = false
+				this.$emit('playlisttoggle')
 			}
 		}
 	}
