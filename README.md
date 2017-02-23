@@ -6,8 +6,8 @@
     1. 原生js封装自己的跨域请求函数，支持promise调用，支持错误处理
     2. 制作一些复用性强的vue组件，如轮播图组件，支持手势滑动，无限循环，图片按需加载
     3. 清晰明了的项目目录
-[目录](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/xiang.png) 
-[演示](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/test.gif)
+![目录](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/xiang.png) 
+![演示](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/test.gif)
  手写跨域调用：（services-index.js）
  ```javascript
     function deal (res) {//接口返回code码处理
