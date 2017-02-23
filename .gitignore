@@ -6,3 +6,4 @@ test/unit/coverage
 
 node_modules
 .vscode
+README.md

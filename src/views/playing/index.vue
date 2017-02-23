@@ -62,7 +62,9 @@ export default {
             return this.$store.state.playing
         },
         playsong : function() {
-            this.getlyc(this.$store.state.nowsong.songid)
+            if (this.$store.state.nowsong.songid) {
+                this.getlyc(this.$store.state.nowsong.songid)
+            }
             return this.$store.state.nowsong
         },
         progess : function() {
