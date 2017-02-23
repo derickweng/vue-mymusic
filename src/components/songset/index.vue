@@ -35,9 +35,11 @@ export default {
         },
         playImm () {
             this.$emit('playimm')
+            this.$emit('toggleset')
         },
         addPlayList () {
             this.$emit('addplaylist')
+            this.$emit('toggleset')
         }
     }
 }

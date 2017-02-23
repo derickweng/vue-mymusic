@@ -168,11 +168,11 @@
    &:after{
         content:'';
         display:block;
-        width:0.7em;
+        width:0.8em;
         height:0.1em;
         background-color:currentColor;
         position:absolute;
-        top:45%;
+        top:47%;
         left:45%;
         transform: rotate(90deg) translateY(50%);
     }

@@ -44,6 +44,7 @@ export default {
 		},
 		clearlist () {
 			this.$store.commit('clearplaylist')
+			this.$emit('playlisttoggle')
 		},
 		close (e) {
 			if (e.target === e.currentTarget) {

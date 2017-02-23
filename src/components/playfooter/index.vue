@@ -55,7 +55,7 @@ export default {
             this.$emit('nextplay')
         },
         goPlaying () {
-            this.$emit('routego','playing',this.nowsong.songid)
+            this.$emit('routego','playing')
         },
         togglePlaying () {
             this.$emit('toggleplaying')
