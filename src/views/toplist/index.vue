@@ -60,7 +60,7 @@ export default{
         this.getbanner()
     },
     methods : {
-        getbanner () {
+        getbanner () { //获取banner
             API.getbanner(
                 {
                     g_tk:5381,

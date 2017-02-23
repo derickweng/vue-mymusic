@@ -11,7 +11,7 @@ Vue.directive('flowScroll',{ //用于控制滚动条
 	}
 })
 
-Vue.directive('load',{
+Vue.directive('load',{ //用于加载loading
 	update (el, binding) {
 		if (binding.value && binding.value.length) {
 			el.style.display = 'none'

@@ -43,7 +43,7 @@ export default new Vuex.Store({
 		}
 	},
 	actions : {
-		nextplay (context) {
+		nextplay (context) { //打开下一首音乐
 			const state = context.state,
 				  songid = state.nowsong.songid
 			if (state.playlist.length <= 1) {
