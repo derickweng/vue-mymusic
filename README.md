@@ -10,6 +10,7 @@
 ![演示](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/test.gif)
 ![banner原生无限循环滑动组件](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/banner.png)
 ![API公共类](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/api.png)
+###[项目在线预览地址](https://derickweng.github.io/test)
  手写跨域调用：（services-index.js）
  ```javascript
     function deal (res) {//接口返回code码处理
