@@ -8,6 +8,8 @@
     3. 清晰明了的项目目录
 ![目录](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/xiang.png) 
 ![演示](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/test.gif)
+![banner原生无限循环滑动组件](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/banner.png)
+![API公共类](https://github.com/derickweng/vue-mymusic/blob/master/imgforread/api.png)
  手写跨域调用：（services-index.js）
  ```javascript
     function deal (res) {//接口返回code码处理
