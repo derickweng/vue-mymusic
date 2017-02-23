@@ -20,9 +20,11 @@ function myJsonp(url,params){  //封装jsonp跨域请求
       scriptEle.src = `${url}?${srcPar}${params.callback}=jsonpback${time}`
       headEle.appendChild(scriptEle)
       window[`jsonpback${time}`] = function(result){
-        resolve(result)
-        headEle.removeChild(scriptEle)//用完后清除js
-        delete window[`jsonpback${time}`]
+          resolve(result)
+          setTimeout(()=>{
+            headEle.removeChild(scriptEle)//用完后清除js
+            delete window[`jsonpback${time}`]
+          },1000)
       }
     }catch(e){
       reject(e)
