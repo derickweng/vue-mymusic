@@ -110,7 +110,7 @@ import API from 'api'
                this.$store.commit('increPlaying')
            },
             routego(name) {
-                this.$store.dispatch('increTranStyle','downslide').then(() => {
+                this.$store.dispatch('increTranStyle','downslide').then(() => { //increTranStyle用了promise处理，确保修改完成才跳转
                     this.$router.push({
                         name : name
                     })
