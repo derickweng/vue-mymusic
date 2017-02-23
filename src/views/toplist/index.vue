@@ -78,13 +78,10 @@ export default{
                 this.bannerlist = res.data['slider']
             })
         },
-        routego(name,id) {
+        routego(name) {
             this.$store.dispatch('increTranStyle','downslide').then(() => {
                 this.$router.push({
-                    name : name,
-                    params : {
-                        id : id
-                    }
+                    name : name
                 })
             })
         },

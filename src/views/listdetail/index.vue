@@ -103,13 +103,10 @@ import API from 'api'
            showplaylist (bool) {
                this.$store.state.playlistToggle = bool
            },
-            routego(name,id) {
+            routego(name) {
                 this.$store.dispatch('increTranStyle','downslide').then(() => {
                     this.$router.push({
-                        name : name,
-                        params : {
-                            id : id
-                        }
+                        name : name
                     })
                 })
             },

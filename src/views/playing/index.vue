@@ -62,16 +62,12 @@ export default {
             return this.$store.state.playing
         },
         playsong : function() {
+            this.getlyc(this.$store.state.nowsong.songid)
             return this.$store.state.nowsong
         },
         progess : function() {
             return this.$store.state.audioProgss
         }
-    },
-    beforeRouteEnter (to, from, next) {
-        next( vm => {
-            vm.getlyc(to.params.id)
-        })
     },
     methods : {
         getlyc (id) {

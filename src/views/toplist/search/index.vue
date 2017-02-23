@@ -10,7 +10,12 @@
 		<transition name="downslide">
 				<div class="search-list-warp" v-if="showsearch"  @click="toggleSearch($event)">
 					<ol class="searchlist">
-						<li class="search-items" v-for="(list,index) in hostlist" @click="palySong(list)"><span>{{index+1}}.</span><span class="songname">{{list.k||list.name}}</span><span class="hot-res" v-if="list.n">热度:{{list.n}}</span></li>	
+						<li class="search-items" v-for="(list,index) in hostlist" @click="palySong(list)">
+							<span>{{index+1}}.</span>
+							<span class="songname">{{list.k||list.name}}</span>
+							<span class="hot-res" v-if="list.n">热度:{{list.n}}</span>
+							<span class="hot-res" v-if="list.singer">{{list.singer}}</span>
+						</li>	
 					</ol>	
 				</div>
 		</transition>
@@ -91,7 +96,6 @@ export default {
 			})
 		},
 		palySong (song) {
-			console.log(song)
 			if (song.id) {
 				song = {
 					singer : [{
@@ -100,7 +104,6 @@ export default {
 					songid : song.id,
 					songname : song.name
 				}
-				// this.$store.state.nowsong = song
 				this.$store.commit('nowsong',song)
 				this.$store.commit('addsong',song)
 			}
