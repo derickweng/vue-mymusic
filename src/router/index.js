@@ -21,7 +21,7 @@ export default new Router({
       ]
     },
     {
-      path:'/playing',
+      path:'/playing/:id',
       name : 'playing',
       component : playing
     },

@@ -1,13 +1,15 @@
 <template>
 <transition name="fade">
-	<div class="mask" @click="close($event)" v-show="showlist" @scroll="setScroll($event)">
+	<div class="mask" @click="close($event)" v-show="showlist && playlist.length ">
 		<transition name="downslide">
 			<div class="playlist" v-show="showlist" v-flowScroll="showlist">
-		       <header class="playlist-head"><span class="title">播放列表(23)</span><a href="javascript:;" class="clearList">清空</a></header>
+			   <header class="playlist-head"><span class="title" :style="{'padding-left':candele?'3rem':'0'}">播放列表({{playlist.length}})</span><a href="javascript:;" class="clearList" @click="clearlist"  v-if="candele">清空</a></header>
 		         	<ul  class="playlist-art">
-		             	<li class="list-li"><span class="songname">想你的旧名字</span><span class="songart">- 李克勤</span><span class="del-list">&#10006;</span></li>
-		             	<li class="list-li"><span class="songname">想你的旧名字</span><span class="songart">- 李克勤</span><span class="del-list">&#10006;</span></li>
-		             	<li class="list-li active"><span class="songname">想你的旧名字</span><span class="songart">- 李克勤</span><span class="del-list">&#10006;</span></li>
+						 <li class="list-li" v-for="song in playlist" @click="playinlist(song)" :class="{'active':nowsong.songid === song.songid}">
+						 	<span class="songname">{{song.songname}}-</span>
+							 <span class="songart"><span v-for="singer in song.singer">{{singer.name}} </span></span>
+							 <span class="del-list" @click.stop="deleplaylist(song)" v-if="candele">&#10006;</span>
+						 </li>
 		            </ul>
 		    </div>
 	    </transition>	
@@ -18,15 +20,30 @@
 import {mapState} from 'vuex'
 export default {
 	name : 'playlist',
+	props : {
+		candele : {
+			require : true,
+			default : function(){
+				return true
+			}
+		}
+	},
 	computed : {
 		...mapState({
-			showlist : state => state.playlistToggle
+			showlist : state => state.playlistToggle,
+			playlist : state =>  state.playlist,
+			nowsong : state => state.nowsong
 		})
 	},
 	methods:{
-		setScroll (e) {
-			console.log(e)
-			e.preventDefault()
+		playinlist (song) {
+			this.$store.commit('nowsong',song)
+		},
+		deleplaylist (song) {
+			this.$store.dispatch('deleplaylist',song)
+		},
+		clearlist () {
+			this.$store.commit('clearplaylist')
 		},
 		close (e) {
 			if (e.target === e.currentTarget) {
@@ -62,7 +79,6 @@ export default {
 	.title {
 		flex:5;
 		text-align: center;
-		padding-left: 3rem;
 		color:black;
 	}
 	.clearList {
@@ -73,7 +89,7 @@ export default {
 	}
 }
 .playlist-art {
-	height:100%;
+	height:90%;
 	overflow: auto;
 	.list-li {
 		border-bottom: 1px solid #ccc;

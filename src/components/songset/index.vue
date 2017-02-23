@@ -5,8 +5,8 @@
               <div class="song-set" v-if="togglelist">
                   <div class="song-head">歌曲：{{targetsong.data.songname}}</div>
                 <ul class="set-items">
-                    <li class="set-item" @click="playImm(targetsong)">立即播放</li>
-                    <li class="set-item" @click="addPlayList(targetsong)">加入到播放列表</li>
+                    <li class="set-item" @click="playImm">立即播放</li>
+                    <li class="set-item" @click="addPlayList">加入到播放列表</li>
                 </ul>
                </div>
             </transition>
@@ -34,10 +34,10 @@ export default {
             this.$emit('toggleset')
         },
         playImm () {
-            this.$emit('playImm')
+            this.$emit('playimm')
         },
         addPlayList () {
-            this.$emit('addPlayList')
+            this.$emit('addplaylist')
         }
     }
 }
@@ -56,6 +56,9 @@ export default {
         color:#aaa;
         line-height:2rem;
         padding-left:1rem;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
     }
     .song-set {
         width:100%;
@@ -67,12 +70,8 @@ export default {
         text-align:center;
     }
     .set-item {
-        height:3rem;
-        line-height: 3rem;
-        /*&:hover{
-            background-color:#ccc;
-            color:$themeColor;
-        }*/
+        height:5rem;
+        line-height: 5rem;
     }
 }
 </style>

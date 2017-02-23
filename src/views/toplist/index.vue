@@ -4,7 +4,7 @@
             <div class="toplist">
                 <header class="topheader">
                     <a href="javascript:;" class="search-ico-wrap">   
-                        <span class="icon-search" @click="stateSearch"></span>
+                        <span class="icon-search" @click="togglesearch"></span>
                     </a>
                 </header>
                 <banner :bannerlist="bannerlist" :picurl="'picUrl'" :linkurl="'linkUrl'"></banner>
@@ -19,9 +19,9 @@
                 </div>
                 <router-view></router-view>
             </div>
-            <playfooter @routego="routego" @toggleplaying="togglePlaying" @showplaylist="showplaylist" v-if="showHeader"></playfooter> 
-            <playlist @playlisttoggle="showplaylist"></playlist>
-            <search :showsearch="showSearch" @togglesearch="stateSearch"></search>
+            <playfooter @routego="routego" @toggleplaying="togglePlaying" @showplaylist="showplaylist(true)" @nextplay="nextplay" v-if="showHeader"></playfooter> 
+            <playlist @playlisttoggle="showplaylist(false)"></playlist>
+            <search :showsearch="showSearch" @togglesearch="togglesearch"></search>
         </div>
     </transition>
 </template>
@@ -47,20 +47,13 @@ export default{
                 left : ''
             },
             showSearch : false,
-            showHeader : false,
             bannerlist : []
         }
     },
-    beforeRouteEnter (to, from, next) {
-        next(vm => {
-            setTimeout(() => {
-                vm.showHeader = true
-            }, 100);
-        })
-    },
     computed : {
         ...mapState({
-            transtyle : state => state.tranStyle
+            transtyle : state => state.tranStyle,
+            showHeader : state => state.nowsong
         })
     },
     mounted(){
@@ -85,20 +78,26 @@ export default{
                 this.bannerlist = res.data['slider']
             })
         },
-        routego(name) {
+        routego(name,id) {
             this.$store.dispatch('increTranStyle','downslide').then(() => {
                 this.$router.push({
-                    name : name
+                    name : name,
+                    params : {
+                        id : id
+                    }
                 })
             })
         },
         togglePlaying () {
             this.$store.commit('increPlaying')
         },
-        showplaylist () {
-            this.$store.commit('increPlaylist')
+        nextplay () {
+            this.$store.dispatch('nextplay')
         },
-        stateSearch () {
+        showplaylist (bool) {
+            this.$store.state.playlistToggle = bool
+        },
+        togglesearch () {
             this.showSearch = !this.showSearch
         },
         listActive (e) {

@@ -1,3 +1,4 @@
+<!--播放界面-->
 <template>
 	<transition :name="transtyle">
          <div class="playing">
@@ -5,48 +6,19 @@
                 <header class="playing-head" @click="goback">
                     <a href="javascript:;" class="back-btn"><span class="icon-back"></span></a>
                     <div class="playing-title">
-                        <p class="song-name">分生疏啊首发身份撒发射反反复复吩咐</p>
-                        <p class="song-art">容祖儿</p>
+                        <p class="song-name">{{playsong.songname}}</p>
+                        <p class="song-art"><span v-for="item in playsong.singer">{{item.name}}</span></p>
                     </div>
                 </header>
                 <article class="playing-art">
                     <ul class="lysrc-items">
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发</li>
-                        <li>不舍得啊沙发沙发不舍得啊沙发沙发不舍得啊沙发沙发</li>
+                        <li v-for="item in lysrc">{{item}}</li>
                     </ul>
                 </article>
                 <footer class="playing-footer">
-                    <div class="progess"></div>
+                    <div class="progess"  :style="{'width':progess}"></div>
                     <ul class="foot-btn">
-                        <li>
+                        <li @click="preplay">
                             <div class="icon-pre icon"></div>
                         </li>
                         <li @click="toggleAudio">
@@ -54,27 +26,33 @@
                                 <div :class="[hasplaying?'audio-playing':'audio-pause']"></div>
                             </div>
                         </li>
-                        <li>
+                        <li @click="nextplay">
                             <div class="icon-next icon"></div>
                         </li>
-                        <li class="icon-list-btn"   @click="showplaylist">
+                        <li class="icon-list-btn"   @click="showplaylist(true)">
                             <div class="icon-list icon"></div>
                         </li>
                     </ul>
                 </footer>
             </div>
             <div class="playbg"></div>
-            <playlist @playlisttoggle="showplaylist"></playlist>
+            <playlist @playlisttoggle="showplaylist(false)" :candele="false"></playlist>
          </div>
     </transition>
 </template>
 <script>
-// import img from 'assets/img/1.jpg'
+import API from 'api'
 import playlist from 'components/playlist'
+import base64 from 'utils/base64.js'
 export default {
     name : 'playing',
     components : {
         playlist
+    },
+    data () {
+        return {
+            lysrc : ''
+        }
     },
     computed : {
         transtyle : function(){
@@ -82,9 +60,32 @@ export default {
         },
         hasplaying : function(){
             return this.$store.state.playing
+        },
+        playsong : function() {
+            return this.$store.state.nowsong
+        },
+        progess : function() {
+            return this.$store.state.audioProgss
         }
     },
+    beforeRouteEnter (to, from, next) {
+        next( vm => {
+            vm.getlyc(to.params.id)
+        })
+    },
     methods : {
+        getlyc (id) {
+           let url = `${API.url.getlyc}/${id}`
+           API.seturl(url,{
+               callback : 'callback'
+           }).then(res=>{
+               this.lysrc = base64.utf8output(res.lyric).split('[').map((item)=>{
+                   return item.replace(/(.*)\]/g,'')
+               })
+           }).catch(()=>{
+               this.lysrc = ['这首歌无歌词~']
+           })
+        },
         goback () {
             this.$store.dispatch('increTranStyle','rightslide').then(() => {
                 this.$router.push({
@@ -92,11 +93,17 @@ export default {
                 })
             })
         },
+        nextplay () {
+            this.$store.dispatch('nextplay')
+        },
+        preplay () {
+            this.$store.dispatch('preplay')
+        },
         toggleAudio () {
             this.$store.commit('increPlaying')
         },
-        showplaylist () {
-            this.$store.commit('increPlaylist')
+        showplaylist (bool) {
+            this.$store.state.playlistToggle = bool
         },
     }
 }
@@ -163,6 +170,9 @@ export default {
             .lysrc-items {
                 margin:4rem 0;
             }
+            .lysrc-items>li {
+                margin : 1rem 0;
+            }
         }
         .playing-head {
             width:100%;
@@ -174,7 +184,7 @@ export default {
      .playing-footer {
             flex:3;
             .progess {
-                width:90%;
+                width:0%;
                 height:0.5rem;
                 border-radius:5px;
                 background:$themeColor;

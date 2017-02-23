@@ -1,6 +1,6 @@
 <template>
     <div class="billboard-wrap">
-        <ul class="billboard">
+        <ul class="billboard" :class="{'hasPlay':showHeader}">
             <li class="billboard-item bill-loading" v-load="listContent">
                 <img :src="loadgif">
             </li>
@@ -22,6 +22,11 @@ export default {
         return {
              listContent : [],
              loadgif : loadgif
+        }
+    },
+    computed : {
+        showHeader : function () {
+            return this.$store.state.nowsong
         }
     },
     mounted () {
@@ -64,7 +69,7 @@ export default {
     width:5rem;
     margin:0 auto;
 }
-.billboard {
+.hasPlay {
     padding-bottom:4rem;
 }
 .billboard-wrap{

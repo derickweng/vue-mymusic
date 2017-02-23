@@ -1,3 +1,4 @@
+<!--列表详情-->
 <template>
     <transition name="rightslide">
         <div class="listdetail" :class="[showHeader?'calcH':'maxH']">
@@ -14,10 +15,10 @@
                 <ol>
                      <li class="list-item" v-for="(item,index) in songlist">
                         <p class="list-num">{{index+1}}</p>
-                        <p class="song">
+                        <p class="song" @click="playsong(item)">
                             <span class="song-name">{{item.data.songname}}</span>
                             <span class="song-art">
-                                <span v-for="singer in item.data.singer">{{singer.name}}</span>
+                                <span v-for="singer in item.data.singer">{{singer.name}} </span>
                                 <span class="hot">热度:{{item.cur_count}}</span>
                             </span>
                         </p>
@@ -30,19 +31,22 @@
             <div class="loading" v-load="songlist">
                 <img :src="blockload" class="loading_img">
             </div>
-            <songset @toggleset="toggleSet" v-if="showsongset" :targetsong="targetSong"></songset>
-            <playfooter  @routego="routego" v-if="showHeader"></playfooter>
+            <songset @toggleset="toggleSet" v-if="showsongset" :targetsong="targetSong" @playimm="playsong(targetSong)" @addplaylist="addplayList(targetSong)"></songset>
+            <playlist @playlisttoggle="showplaylist(false)"></playlist>
+            <playfooter  @routego="routego" v-if="showHeader" @showplaylist="showplaylist(true)"></playfooter>
         </div>
     </transition>
 </template>
 <script>
 import blockload from 'assets/img/block-load.gif'
 import playfooter from 'components/playfooter'
+import playlist from 'components/playlist'
 import songset from 'components/songset'
 import API from 'api'
     export default {
         components : {
             playfooter,
+            playlist,
             songset
         },
         data () {
@@ -51,17 +55,18 @@ import API from 'api'
                 topinfo : {},
                 songlist : [],
                 targetSong : {},
-                showHeader : false,
                 showsongset : false,
             }
         },
-        mounted () {
-            this.getListDetail(this.$route.params.id)
+        computed : {
+            showHeader : function() {
+                return this.$store.state.nowsong
+            }
         },
         beforeRouteEnter (to, from, next) {
             next(vm => {
                 setTimeout(()=> {
-                    vm.showHeader = true
+                    vm.getListDetail(vm.$route.params.id)
                 },500)
             })
         },
@@ -88,10 +93,23 @@ import API from 'api'
                }
                this.showsongset = !this.showsongset
            },
-           routego (name) {
+           playsong (item) {
+               this.$store.commit('nowsong',item.data)
+               this.$store.commit('addsong',item.data)
+           },
+           addplayList (item) {
+               this.$store.commit('addsong',item.data)
+           },
+           showplaylist (bool) {
+               this.$store.state.playlistToggle = bool
+           },
+            routego(name,id) {
                 this.$store.dispatch('increTranStyle','downslide').then(() => {
                     this.$router.push({
-                        name : name
+                        name : name,
+                        params : {
+                            id : id
+                        }
                     })
                 })
             },
@@ -120,6 +138,7 @@ import API from 'api'
 	}
 }
 .calcH {
+    padding-bottom:4rem;
     height:calc(100vh - 4rem);
 }
 .maxH {

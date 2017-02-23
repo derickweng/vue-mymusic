@@ -1,9 +1,7 @@
-# vuemusic
 
-> A Vue.js project
+###使用Vue2+webpack+Es6快速开发一个跨平台音乐播放器（附详细代码解析，通过ES6封装属于自己的跨域请求函数，并制作一些复用性强的vue组件）
 
-## Build Setup
-
+## 最近看到不少使用vue制作的音乐播放器，挺好玩的，本来工作中也经常使用Vue，所以本人也花了大概4天做了一款玩玩
 ``` bash
 # install dependencies
 npm install
@@ -22,6 +20,4 @@ npm run unit
 
 # run all tests
 npm test
-```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

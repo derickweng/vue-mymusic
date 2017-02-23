@@ -3,14 +3,14 @@
 		<div  class="search-head" v-flowScroll="showsearch">
 			<transition name="fade">
 				<span  v-if="showsearch" class="search-inp-wrap">
-					<input type="text" class="searchtext" v-focus="showsearch">
+					<input type="text" class="searchtext" v-focus="showsearch" v-model="searchtext">
 				</span>
 			</transition>
 		</div>
 		<transition name="downslide">
 				<div class="search-list-warp" v-if="showsearch"  @click="toggleSearch($event)">
 					<ol class="searchlist">
-						<li class="search-items" v-for="(list,index) in hostlist"><span>{{index+1}}.</span><span class="songname">{{list.k}}</span><span class="hot-res">热度:{{list.n}}</span></li>	
+						<li class="search-items" v-for="(list,index) in hostlist" @click="palySong(list)"><span>{{index+1}}.</span><span class="songname">{{list.k||list.name}}</span><span class="hot-res" v-if="list.n">热度:{{list.n}}</span></li>	
 					</ol>	
 				</div>
 		</transition>
@@ -26,7 +26,8 @@ export default {
 	},
 	data () {
 		return {
-			hostlist : []
+			hostlist : [],
+			searchtext : ''
 		}
 	},
 	directives : {
@@ -43,6 +44,11 @@ export default {
 			if (val && !this.hostlist.length) {
 				this.gethot()
 			}	
+		},
+		searchtext : function(val) {
+			if (val) {
+				this.search(val)
+			}
 		}
 	},
 	methods : {
@@ -59,9 +65,45 @@ export default {
 				needNewCode:0,
 				callback: 'jsonpCallback'
 			}
-			API.gethotkey(params).then(res=>{
+			API.gethotkey(params).then(res => {
 				this.hostlist = res.data.hotkey
 			})
+		},
+		search (key) {
+			const params = {
+				is_xml:0,
+				format:'jsonp',
+				key:key,
+				g_tk:5381,
+				loginUin:0,
+				hostUin:0,
+				inCharset:'utf8',
+				outCharset:'utf-8',
+				notice:0,
+				platform:'yqq',
+				needNewCode:0,
+				callback:'jsonpCallback'
+			}
+			API.search(params).then(res => {
+				if (res.data.song && res.data.song.itemlist) {
+					this.hostlist = res.data.song.itemlist
+				}
+			})
+		},
+		palySong (song) {
+			console.log(song)
+			if (song.id) {
+				song = {
+					singer : [{
+						name :song.singer
+					}],
+					songid : song.id,
+					songname : song.name
+				}
+				// this.$store.state.nowsong = song
+				this.$store.commit('nowsong',song)
+				this.$store.commit('addsong',song)
+			}
 		},
 		toggleSearch (e) {
 			if (e.target === e.currentTarget) { //当然也可以直接使用vue的click.self

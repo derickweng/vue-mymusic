@@ -4,10 +4,10 @@
             <div class="playfooter">
                 <div class="playmsg"  @click="goPlaying">
                     <p class="song-name">
-                        全世界东北话
+                        {{nowsong.songname}}
                     </p>
                     <p class="song-artist">
-                        DBbosy组合
+                        <span v-for="singer in nowsong.singer">{{singer.name}}</span>
                     </p>
                 </div>
                 <ul class="nav-button">
@@ -19,7 +19,7 @@
                             <div :class="[audioActived?'audio-playing':'audio-pause']"></div>
                         </div>  
                     </li>
-                    <li class="nav-btn-items">
+                    <li class="nav-btn-items" @click="nextPlay">
                         <div class="audio-next">
                                 <div class="next-line"></div>
                                 <div class="line-right"></div>
@@ -27,7 +27,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="playbar">
+            <div class="playbar" :style="{'width':audioProgss}">
             </div>
         </div>
   </transition>
@@ -35,19 +35,27 @@
 <script type="text/javascript">
 export default {
     name : 'playfooter',
-    // data () {
-    //     return {
-    //         // audioActived : true
-    //     }
-    // },
     computed : {
         audioActived : function() {
             return  this.$store.state.playing
+        },
+        nowsong : function () {
+            return this.$store.state.nowsong
+        },
+        audioProgss : function () {
+            let progess = this.$store.state.audioProgss
+            if (parseInt(progess) >= 100) {
+                this.$emit('nextplay')
+            }
+            return progess
         }
     },
     methods : {
+        nextPlay () {
+            this.$emit('nextplay')
+        },
         goPlaying () {
-            this.$emit('routego','playing')
+            this.$emit('routego','playing',this.nowsong.songid)
         },
         togglePlaying () {
             this.$emit('toggleplaying')
@@ -60,6 +68,11 @@ export default {
 </script>
 <style scoped lang="scss">
 @import '~assets/css/theme.scss';
+    .song-name {
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
     .footer-warp {
         position:fixed;
         bottom:0;
@@ -74,6 +87,7 @@ export default {
     .playmsg{
         flex:3;
         padding:.5rem 0 0 1rem;
+        overflow: hidden;
     }
     .song-artist {
         color:#9c9c9c;
@@ -102,7 +116,7 @@ export default {
     }
     .playbar {
         background-color: $themeColor;
-        width: 10%;
+        width: 0;
         max-width:100%;
         overflow:hidden;
         height: .2rem;

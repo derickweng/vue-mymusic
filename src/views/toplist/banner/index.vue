@@ -1,3 +1,4 @@
+<!--轮播图-->
 <template>
     <div class="banner">
         <div class="slider-wrap">
@@ -48,9 +49,11 @@ export default {
         },
     },
     mounted () {
-        this.interTimer = setInterval(()=>{
-            this.sliderStart()
-        },3000)
+        if (this.bannerlist && this.bannerlist.length) {
+            this.interTimer = setInterval(()=>{
+                this.sliderStart()
+            },3000)
+        }
     },
     methods : {
         linkURl (item) {
@@ -123,7 +126,7 @@ export default {
            this.nowSlider ++ 
            this.nowSlider %= this.sliderImg.length
            if (this.nowSlider === this.bannerlist.length) {  //向右滑动到最大值时，将位置初始化并清0 nowSlider
-               setTimeout(() => { //设置一个定时器，像当于两个线程，一个进行尾端拷贝的图片的正常滑动，这个处理在差不多到达时重置，造成无限循环的错觉
+               setTimeout(() => { //设置一个定时器，用于异步处理，一个进行尾端拷贝的图片的正常滑动，这个处理在差不多到达时重置，造成无限循环的错觉
                     this.sliderActive = {
                         transform: `translate3d(-100vw,0,0)`
                     }

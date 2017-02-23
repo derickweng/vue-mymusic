@@ -1,8 +1,5 @@
 import services from 'services'
-
-const serobj = (function(){
-  const url = {
-
+const url = {
     getbanner : 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',//获取推荐专辑banner
     
     gettoplist : 'http://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg', //获取排行榜
@@ -11,15 +8,27 @@ const serobj = (function(){
 
     gethotkey : 'http://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg',//获取热门歌曲
 
+    search  : 'http://c.y.qq.com/splcloud/fcgi-bin/smartbox_new.fcg',//搜索
+
+    getlyc : 'https://api.darlin.me/music/lyric',//获取歌词
+    
+    getsong : 'http://ws.stream.qqmusic.qq.com/' //获取歌曲
+} 
+class API {  //新建一个API类
+  constructor ({services, url}) {
+    let serobj = {}
+    this.url = url
+    this.services = services
+    Object.keys(url).forEach((item)=>{
+       serobj[item] = services.jsonp.bind(null,url[item])
+    })
+    Object.assign(API.prototype,serobj) //导入多个方法
   }
-
-  let serobj = {}
-
-  Object.keys(url).forEach((item)=>{
-      serobj[item] = services.jsonp.bind(null,url[item])
-  })
-  return serobj
-
-})()
-
-export default serobj
+  seturl (url, params) {
+    return this.services.jsonp.call(this,url,params)
+  }
+}
+export default new API({
+  services,
+  url
+})

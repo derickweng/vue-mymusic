@@ -31,6 +31,7 @@ module.exports = {
       'services': resolve('src/services/index.js'),
       'api': resolve('src/services/api.js'),
       'views': resolve('src/views'),
+      'utils' : resolve('src/utils'),
       'store': resolve('src/store'),
       'directives': resolve('src/directives'),
       'components': resolve('src/components')
