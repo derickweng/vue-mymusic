@@ -33,7 +33,7 @@
             </div>
             <songset @toggleset="toggleSet" v-if="showsongset" :targetsong="targetSong" @playimm="playsong(targetSong)" @addplaylist="addplayList(targetSong)"></songset>
             <playlist @playlisttoggle="showplaylist(false)"></playlist>
-            <playfooter  @routego="routego" v-if="showHeader" @showplaylist="showplaylist(true)"></playfooter>
+            <playfooter  @routego="routego" @toggleplaying="togglePlaying" v-if="showHeader" @nextplay="nextplay" @showplaylist="showplaylist(true)"></playfooter>
         </div>
     </transition>
 </template>
@@ -102,6 +102,12 @@ import API from 'api'
            },
            showplaylist (bool) {
                this.$store.state.playlistToggle = bool
+           },
+           nextplay () {
+                this.$store.dispatch('nextplay')
+            },
+           togglePlaying () {
+               this.$store.commit('increPlaying')
            },
             routego(name) {
                 this.$store.dispatch('increTranStyle','downslide').then(() => {
