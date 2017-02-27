@@ -3,7 +3,7 @@
     <div class="banner">
         <div class="slider-wrap">
             <ul class="slider-items" :style="[sliderActive,{'width':sliderImg.length*100+'vw'}]" @touchstart="stopSlider($event)" @touchmove="moveSlider($event)" @touchend="continSilder($event)">
-                <li class="slider-item" v-for="(item,index) in sliderImg" @click="linkURl(item)"><img :src="getURl(item,index)" class="item-img"></li>
+                <li class="slider-item" v-for="(item,index) in sliderImg" @click.stop="linkURl(item)"><img :src="getURl(item,index)" class="item-img"></li>
             </ul>
         </div>
         <ul class="banner-page">
@@ -73,8 +73,6 @@ export default {
             return reloadImg
         },
         stopSlider (e) {
-            e.preventDefault()
-            e.stopPropagation()
             if (e.target != e.currentTarget) {  //事件委托节省下事件绑定，排除当前绑定的dom
                 clearInterval(this.interTimer)
                 delete this.sliderActive['transition'] //关闭css3过渡效果
@@ -82,8 +80,6 @@ export default {
             }
         },
         moveSlider (e) {
-            e.preventDefault()
-            e.stopPropagation()
             if (this.nowSlider === -1||this.nowSlider === this.bannerlist.length) {  //首端与尾端未连接好禁止滑动
                 return;
             }
@@ -104,8 +100,6 @@ export default {
             }
         },
         continSilder (e) { //结束触摸
-            e.preventDefault()
-            e.stopPropagation()
             if (e.target != e.currentTarget && this.moveTouch) {
                 const slideDir = this.moveTouch - this.startTouch
                 if (slideDir < 0) {

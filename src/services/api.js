@@ -22,9 +22,9 @@ class API {  //新建一个API类
     Object.keys(url).forEach((item)=>{
        serobj[item] = services.jsonp.bind(null,url[item])
     })
-    Object.assign(API.prototype,serobj) //导入多个方法
+    Object.assign(this,serobj) //导入多个方法
   }
-  seturl (url, params) {
+  seturl (url, params) {//返回原始方法
     return this.services.jsonp.call(this,url,params)
   }
 }
