@@ -1,8 +1,6 @@
 <template>
     <div class="app">
-        <keep-alive>
           <router-view></router-view>
-        </keep-alive>
         <audio autoplay :src="audioSrc" id="m-audio" v-if="audioSrc" v-show="false" v-play="playing">
         </audio>
     </div>
