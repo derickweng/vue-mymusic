@@ -8,7 +8,7 @@
     3. 清晰明了的项目目录
 
 ###[项目仓库地址](https://github.com/derickweng/vue-mymusic)
-###[项目演示地址](https://derickweng.github.io/test/)
+###[项目演示地址](https://derickweng.github.io/vue-mymusic/dist/#/)
 
 ***
 ###一、规划目录
