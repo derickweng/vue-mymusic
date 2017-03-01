@@ -7,7 +7,7 @@
                         <span class="icon-search" @click="togglesearch"></span>
                     </a>
                 </header>
-                <banner :bannerlist="bannerlist" :picurl="'picUrl'" :linkurl="'linkUrl'"></banner>
+                <vue-moblie-banner :bannerlist="bannerlist" :picurl="'picUrl'" :linkurl="'linkUrl'"></vue-moblie-banner>
                 <div class="list-wrap">
                     <ul class="list-type"   @click="listActive($event)">
                         <li class="list-type-item" index="0">排行榜</li>
@@ -26,7 +26,7 @@
     </transition>
 </template>
 <script>
-import banner from './banner'
+// import banner from './banner'
 import playfooter from 'components/playfooter'
 import playlist from 'components/playlist'
 import search from './search'
@@ -35,7 +35,7 @@ import {mapState} from 'vuex'
 export default{
     name : 'toplist',
     components : {
-        banner,
+        // banner,
         playfooter,
         playlist,
         search

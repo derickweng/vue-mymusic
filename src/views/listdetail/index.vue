@@ -208,7 +208,7 @@ import API from 'api'
         overflow : hidden;
         .song-name,.song-art{
             display: block;
-            height:2rem;
+            height: 2rem;
         }
         .song-name {
             line-height: 2.5rem;
