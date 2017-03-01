@@ -11,7 +11,7 @@ function myJsonp(url,params){  //封装jsonp跨域请求
       let scriptEle = document.createElement('script'),
           headEle = document.getElementsByTagName('head')[0],
           srcPar = '',
-          time = new Date().getTime()+'_'+Math.random().toString().substr(2); //直接使用时间戳还是有产生相同的函数名，使用随机数减小概率，
+          time = new Date().getTime()+Math.random().toString().substr(2); //直接使用时间戳还是有产生相同的函数名，使用随机数减小概率，
       Object.keys(params).forEach((item) => {
           if (item != 'callback') {
               srcPar += `${item}=${params[item]}&`

@@ -31,7 +31,7 @@
         3. css reset
         4. 项目主题颜色，目前只能在项目初始化之前设置主题颜色,用于管理，所有组件主题颜色都来源于此
 
-![Paste_Image.png](http://upload-images.jianshu.io/upload_images/4149586-7dd2f1c9c88ec9b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![自定义公共图标](http://upload-images.jianshu.io/upload_images/4149586-7dd2f1c9c88ec9b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ***
 ###三、全局API
@@ -55,7 +55,7 @@
      该组件只对传入的数据进行处理，并相应转化，保证了组件的通用性
 ![Paste_Image.png](http://upload-images.jianshu.io/upload_images/4149586-230bced1cf9499a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
       核心的函数主要是对***无限循环的处理、触摸屏滑动,图片按需加载***处理：
- ![test.gif](http://upload-images.jianshu.io/upload_images/4149586-be61325c795bb1a3.gif?imageMogr2/auto-orient/strip)
+ ![banner所需参数](http://upload-images.jianshu.io/upload_images/4149586-be61325c795bb1a3.gif?imageMogr2/auto-orient/strip)
 ```
   computed : {
         sliderImg : function(){
@@ -169,7 +169,7 @@
 ####2.播放器功能
       播放器的所有功能主要依赖vuex（store.js）的控制，由于音乐是在整个app内都播放的，故audio标签放在了App.vue中：
 store.js:
-![Paste_Image.png](http://upload-images.jianshu.io/upload_images/4149586-55ddca87a97b00b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![播放数据控制](http://upload-images.jianshu.io/upload_images/4149586-55ddca87a97b00b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 APP.vue:
@@ -211,4 +211,3 @@ APP.vue:
   },
 ```
 ##整体项目核心功能介绍到此.有好的建议尽管提哦
-（PS：本人正在找新工作，邮箱：wonder3@qq.com,github:https://github.com/derickweng）

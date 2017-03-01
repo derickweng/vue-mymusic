@@ -2,8 +2,4 @@
 node_modules/
 dist/
 npm-debug.log
-test/unit/coverage
-
-node_modules
-.vscode
-README.md
+yarn-error.log
